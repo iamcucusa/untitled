@@ -1,0 +1,10 @@
+/* 1) All imports first */
+@import '@ds/tokens/dist/css/variables.css';
+@import '@ds/styles/src/base.css';
+@import '@ds/styles/src/components.css';
+@import '@ds/styles/src/utilities.css';
+
+/* 2) Then Tailwind’s layer markers */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

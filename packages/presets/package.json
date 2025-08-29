@@ -1,0 +1,13 @@
+{
+  "name": "@ds/presets",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./tailwind-preset.cjs": "./tailwind-preset.cjs"
+  },
+  "dependencies": {
+    "@ds/tokens": "workspace:*",
+    "@ds/styles": "workspace:*"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@ds/tokens",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./dist/css/variables.css": "./dist/css/variables.css",
+    "./dist/tailwind/preset.cjs": "./dist/tailwind/preset.cjs"
+  },
+  "scripts": {
+    "build": "node ./build.cjs"
+  },
+  "devDependencies": {
+    "style-dictionary": "^3.9.2"
+  }
+}

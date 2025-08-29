@@ -1,0 +1,16 @@
+{
+  "name": "@ds/styles",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./src/theme.css": "./src/theme.css",
+    "./src/base.css": "./src/base.css",
+    "./src/components.css": "./src/components.css",
+    "./src/utilities.css": "./src/utilities.css",
+    "./tailwind-plugin.cjs": "./tailwind-plugin.cjs"
+  },
+  "dependencies": {
+    "@ds/tokens": "workspace:*"
+  }
+}
