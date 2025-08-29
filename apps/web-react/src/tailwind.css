@@ -1,8 +1,8 @@
 /* 1) All imports first */
-@import '@ds/tokens/dist/css/variables.css';
-@import '@ds/styles/src/base.css';
-@import '@ds/styles/src/components.css';
-@import '@ds/styles/src/utilities.css';
+@import '@untitled-ds/tokens/dist/css/variables.css';
+@import '@untitled-ds/styles/src/base.css';
+@import '@untitled-ds/styles/src/components.css';
+@import '@untitled-ds/styles/src/utilities.css';
 
 /* 2) Then Tailwind’s layer markers */
 @tailwind base;

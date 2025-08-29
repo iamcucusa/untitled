@@ -1,6 +1,6 @@
 
 import type { Config } from 'tailwindcss'
-import preset from '@ds/presets/tailwind-preset.cjs'
+import preset from '@untitled-ds/presets/tailwind-preset.cjs'
 
 export default {
   presets: [preset],

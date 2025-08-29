@@ -1,5 +1,5 @@
 {
-  "name": "@ds/styles",
+  "name": "@untitled-ds/styles",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -11,6 +11,6 @@
     "./tailwind-plugin.cjs": "./tailwind-plugin.cjs"
   },
   "dependencies": {
-    "@ds/tokens": "workspace:*"
+    "@untitled-ds/tokens": "workspace:*"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@ds/presets",
+  "name": "@untitled-ds/presets",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -7,7 +7,7 @@
     "./tailwind-preset.cjs": "./tailwind-preset.cjs"
   },
   "dependencies": {
-    "@ds/tokens": "workspace:*",
-    "@ds/styles": "workspace:*"
+    "@untitled-ds/tokens": "workspace:*",
+    "@untitled-ds/styles": "workspace:*"
   }
 }
