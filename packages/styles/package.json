@@ -8,7 +8,8 @@
     "./src/base.css": "./src/base.css",
     "./src/components.css": "./src/components.css",
     "./src/utilities.css": "./src/utilities.css",
-    "./tailwind-plugin.cjs": "./tailwind-plugin.cjs"
+    "./tailwind-plugin.cjs": "./tailwind-plugin.cjs",
+  }
   },
   "dependencies": {
     "@untitled-ds/tokens": "workspace:*"
