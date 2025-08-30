@@ -32,7 +32,7 @@ function DarkModeToggle() {
       aria-pressed={dark}
       title="Toggle dark mode"
     >
-      {dark ? 'Dark ✓' : 'Light ✓'}
+      {dark ? 'Dark ✓' : 'Light'}
     </button>
   );
 }
@@ -60,10 +60,14 @@ function App() {
         <p className="mt-3">
           <a href="#" className="link">
             Token-driven link
-          </a>
+          </a>{' '}
+          • Try <kbd>Tab</kbd> below to see the focus ring.
         </p>
         <div className="mt-4">
-          <input className="input" placeholder="Focus me to see :focus-visible ring" />
+          <input
+            className="input"
+            placeholder="Focus me to see the token-based :focus-visible outline"
+          />
         </div>
       </section>
 
@@ -79,7 +83,53 @@ function App() {
           <div className="card p-4 shadow-2xl">shadow-2xl</div>
         </div>
       </section>
+
+      {/* Radii showcase (token-mapped rounded-* via Tailwind preset) */}
+      <section className="space-y-4">
+        <h2 className="text-lg font-semibold">Radii</h2>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-5">
+          <div className="card rounded-sm p-4 text-sm">rounded-sm</div>
+          <div className="card rounded-md p-4 text-sm">rounded-md</div>
+          <div className="card rounded-lg p-4 text-sm">rounded-lg</div>
+          <div className="card rounded-xl p-4 text-sm">rounded-xl</div>
+          <div className="card rounded-2xl p-4 text-sm">rounded-2xl</div>
+        </div>
+      </section>
+
+      {/* Overlay demo (backdrop uses --overlay token; works in light/dark) */}
+      <OverlayDemo />
     </div>
+  );
+}
+
+function OverlayDemo() {
+  const [open, setOpen] = useState(false);
+  return (
+    <section className="space-y-3">
+      <h2 className="text-lg font-semibold">Overlay</h2>
+      <button className="btn btn-outline" onClick={() => setOpen(true)}>
+        Open overlay
+      </button>
+      {open && (
+        <div className="overlay" onClick={() => setOpen(false)}>
+          <div
+            className="card w-[min(100%,28rem)] max-w-md rounded-xl p-6 shadow-lg"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3 className="mb-2 text-lg font-semibold">Token Overlay</h3>
+            <p className="text-sm">
+              Backdrop uses <code>--overlay</code>. Click outside to close. Toggle Dark to see it
+              adapt.
+            </p>
+            <div className="mt-4 flex justify-end">
+              <button className="btn" onClick={() => setOpen(false)}>
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
   );
 }
 

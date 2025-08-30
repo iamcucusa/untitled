@@ -16,10 +16,24 @@
 
   /* focus/outline */
   --focus-ring: var(--color-primary-600);
-  /* radius */
+
+  /* radius (extended) */
   --radius-sm: 6px;
   --radius-md: 8px;
   --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+
+  /* motion */
+  --ease-standard: cubic-bezier(0.2, 0, 0.2, 1);
+  --ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --dur-1: 100ms;
+  --dur-2: 200ms;
+  --dur-3: 300ms;
+  --dur-4: 500ms;
+
+  /* overlay/backdrop */
+  --overlay: rgba(16, 24, 40, 0.5);
 }
 
 :root.dark {
@@ -30,4 +44,5 @@
   --border: var(--color-gray-800);
   --card: var(--color-gray-800);
   --focus-ring: var(--color-primary-400);
+  --overlay: rgba(0, 0, 0, 0.6);
 }

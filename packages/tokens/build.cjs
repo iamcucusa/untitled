@@ -38,7 +38,7 @@ const preset = `module.exports = {
         rose: { 25:'var(--color-rose-25)',50:'var(--color-rose-50)',100:'var(--color-rose-100)',200:'var(--color-rose-200)',300:'var(--color-rose-300)',400:'var(--color-rose-400)',500:'var(--color-rose-500)',600:'var(--color-rose-600)',700:'var(--color-rose-700)',800:'var(--color-rose-800)',900:'var(--color-rose-900)' },
         orange: { 25:'var(--color-orange-25)',50:'var(--color-orange-50)',100:'var(--color-orange-100)',200:'var(--color-orange-200)',300:'var(--color-orange-300)',400:'var(--color-orange-400)',500:'var(--color-orange-500)',600:'var(--color-orange-600)',700:'var(--color-orange-700)',800:'var(--color-orange-800)',900:'var(--color-orange-900)' }
       },
-      borderRadius: { sm:'var(--radius-sm)', md:'var(--radius-md)', lg:'var(--radius-lg)' },
+      borderRadius: { sm:'var(--radius-sm)', md:'var(--radius-md)', lg:'var(--radius-lg)', xl: 'var(--radius-xl)', '2xl': 'var(--radius-2xl)' },
       boxShadow: { xs:'var(--shadow-xs)', sm:'var(--shadow-sm)', md:'var(--shadow-md)', lg:'var(--shadow-lg)', xl:'var(--shadow-xl)', '2xl':'var(--shadow-2xl)', '3xl':'var(--shadow-3xl)' },
       fontFamily: { sans: ['var(--font-family)','system-ui','sans-serif'] },
       fontSize: {

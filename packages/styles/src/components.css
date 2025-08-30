@@ -3,6 +3,7 @@
     @apply inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium shadow-sm transition-colors;
     background: var(--primary);
     color: var(--on-primary);
+    transition: all var(--dur-2) var(--ease-standard);
   }
   .btn:hover {
     filter: brightness(0.95);
@@ -16,6 +17,7 @@
     border-color: var(--primary);
     color: var(--primary);
     background: transparent;
+    transition: all var(--dur-2) var(--ease-standard);
   }
 
   .badge {
@@ -51,6 +53,12 @@
     box-shadow: var(--shadow-sm);
   }
 
+  /* Reusable overlay backdrop for dialogs/drawers */
+  .overlay {
+    @apply fixed inset-0 z-50 flex items-center justify-center;
+    background: var(--overlay);
+  }
+
   .input {
     @apply w-full rounded-md border px-3 py-2;
     background: var(--card);
@@ -67,6 +75,6 @@
     text-underline-offset: 2px;
   }
   .link:hover {
-    text-decoration-thickness: from-font;
+    filter: brightness(0.98);
   }
 }
