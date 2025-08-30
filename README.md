@@ -17,5 +17,16 @@ pnpm i
 pnpm dev   # launches React app
 ```
 
-To use with Angular/Vue, point their Tailwind config to `@untitled-ds/presets/tailwind-preset.cjs`
-and import `@untitled-ds/styles/src/theme.css` in the global styles.
+
+To use with Angular/Vue, point Tailwind to `@untitled-ds/presets/tailwind-preset.cjs`
+and in your app’s Tailwind entry CSS put **imports first**, then Tailwind markers:
+
++ @import '@untitled-ds/tokens/dist/css/variables.css';
++ @import '@untitled-ds/styles/src/base.css';
++ @import '@untitled-ds/styles/src/components.css';
++ @import '@untitled-ds/styles/src/utilities.css';
+
+
++ @tailwind base;
++ @tailwind components;
++ @tailwind utilities;
