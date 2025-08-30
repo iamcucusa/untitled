@@ -4,12 +4,13 @@
     background: var(--primary);
     color: var(--on-primary);
     transition: all var(--dur-2) var(--ease-standard);
+    cursor: pointer;
   }
-  .btn:hover {
-    filter: brightness(0.95);
-  }
+  .btn:hover { background: var(--primary-hover); }
+  .btn:active { background: var(--primary-active); }
   .btn:disabled {
     opacity: 0.6;
+    cursor: not-allowed;
   }
 
   .btn-outline {
@@ -18,7 +19,14 @@
     color: var(--primary);
     background: transparent;
     transition: all var(--dur-2) var(--ease-standard);
+    cursor: pointer;
   }
+
+  .btn-outline:hover { background: var(--primary-surface); }
+  .btn-outline:active { background: var(--primary-surface-strong); }
+  .btn-outline:disabled { cursor: not-allowed; }
+  .btn-outline:disabled:hover,
+  .btn-outline:disabled:active { background: transparent; }
 
   .badge {
     @apply inline-flex items-center rounded-full px-2.5 py-1 text-xs;

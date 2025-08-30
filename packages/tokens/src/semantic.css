@@ -9,6 +9,13 @@
   /* actions & states */
   --primary: var(--color-primary-600);
   --on-primary: white;
+
+  --primary-muted: var(--color-primary-400);
+  --primary-hover: var(--color-primary-700);
+  --primary-active: var(--color-primary-800);
+  --primary-surface: var(--color-primary-50);
+  --primary-surface-strong: var(--color-primary-100);
+
   --success: var(--color-success-600);
   --warning: var(--color-warning-600);
   --error: var(--color-error-600);
@@ -45,4 +52,11 @@
   --card: var(--color-gray-800);
   --focus-ring: var(--color-primary-400);
   --overlay: rgba(0, 0, 0, 0.6);
+
+  /* action states (dark) */
+  --primary-hover: var(--color-primary-500);
+  --primary-active: var(--color-primary-400);
+  --primary-surface: var(--color-primary-900);
+  --primary-surface-strong: var(--color-primary-800);
+
 }
