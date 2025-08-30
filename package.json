@@ -1,25 +1,30 @@
 {
   "name": "monorepo-untitled",
   "private": true,
-  "packageManager": "pnpm@9.0.0",
-  "scripts": {
-    "build": "pnpm -r run build",
-    "dev": "pnpm -C apps/web-react dev",
-    "lint": "echo 'add your linter setup'",
-    "typecheck": "echo 'add ts typecheck jobs'",
-    "postinstall": "pnpm -C packages/tokens build",
-    "check:install": "pnpm install",
-    "check:tokens": "pnpm -C packages/tokens build",
-    "check:dev": "pnpm -C apps/web-react dev",
-    "check:build": "pnpm -C apps/web-react build",
-    "check:type": "pnpm -C apps/web-react exec tsc --noEmit",
-    "check:all": "pnpm run check:install && pnpm run check:tokens && pnpm run check:build && pnpm run check:type"
-  },
-  "devDependencies": {
-    "typescript": "^5.5.4"
-  },
   "workspaces": [
     "packages/*",
     "apps/*"
-  ]
+  ],
+  "scripts": {
+    "build": "pnpm -r run build",
+    "check:all": "pnpm run check:install && pnpm run check:tokens && pnpm run check:build && pnpm run check:type",
+    "check:build": "pnpm -C apps/web-react build",
+    "check:dev": "pnpm -C apps/web-react dev",
+    "check:install": "pnpm install",
+    "check:tokens": "pnpm -C packages/tokens build",
+    "check:type": "pnpm -C apps/web-react exec tsc --noEmit",
+    "dev": "pnpm -C apps/web-react dev",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,css,scss,html,json,md,yml,yaml,graphql,vue}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,css,scss,html,json,md,yml,yaml,graphql,vue}\"",
+    "postinstall": "pnpm -C packages/tokens build",
+    "lint": "echo 'add your linter setup'",
+    "typecheck": "echo 'add ts typecheck jobs'"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2",
+    "prettier-plugin-packagejson": "^2.5.19",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "typescript": "^5.5.4"
+  },
+  "packageManager": "pnpm@9.0.0"
 }

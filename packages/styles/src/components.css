@@ -1,11 +1,29 @@
-
 @layer components {
-  .btn { @apply inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium shadow-sm transition-colors; background: var(--color-primary-600); color: white; }
-  .btn:hover { filter: brightness(0.95); }
-  .btn:disabled { opacity: .6; }
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium shadow-sm transition-colors;
+    background: var(--color-primary-600);
+    color: white;
+  }
+  .btn:hover {
+    filter: brightness(0.95);
+  }
+  .btn:disabled {
+    opacity: 0.6;
+  }
 
-  .btn-outline { @apply border; border-color: var(--color-primary-600); color: var(--color-primary-600); background: transparent; }
-  .btn-outline:hover { background: color-mix(in hsl, var(--color-primary-50) 60%, white); }
+  .btn-outline {
+    @apply border;
+    border-color: var(--color-primary-600);
+    color: var(--color-primary-600);
+    background: transparent;
+  }
+  .btn-outline:hover {
+    background: color-mix(in hsl, var(--color-primary-50) 60%, white);
+  }
 
-  .badge { @apply inline-flex items-center rounded-full px-2.5 py-1 text-xs; background: var(--color-gray-100); color: var(--color-gray-700); }
+  .badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-1 text-xs;
+    background: var(--color-gray-100);
+    color: var(--color-gray-700);
+  }
 }

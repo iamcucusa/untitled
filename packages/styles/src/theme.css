@@ -1,5 +1,4 @@
-
-@import "@untitled-ds/tokens/dist/css/variables.css";
-@import "./base.css";
-@import "./components.css";
-@import "./utilities.css";
+@import '@untitled-ds/tokens/dist/css/variables.css';
+@import './base.css';
+@import './components.css';
+@import './utilities.css';

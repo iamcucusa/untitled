@@ -1,5 +1,15 @@
-
 /* Base (normalize + sensible defaults). You can import your existing normalize.css here if desired. */
-*,*::before,*::after{ box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
-body { margin: 0; font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; color: var(--color-gray-900); background: var(--color-gray-25); }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: var(--color-gray-900);
+  background: var(--color-gray-25);
+}
