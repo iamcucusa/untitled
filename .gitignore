@@ -1,4 +1,17 @@
 
+# Playwright outputs
+**/test-results/
+**/playwright-report/
+**/blob-report/
+
+# Lighthouse CI local reports
+.lighthouseci/
+lhci-report/
+
+# Build outputs
+apps/*/dist/
+packages/tokens/dist/
+
 # Dependencies
 node_modules
 pnpm-lock.yaml
@@ -11,6 +24,7 @@ build
 .DS_Store
 .vscode
 .idea
+
 
 # Logs
 npm-debug.log*

@@ -1,0 +1,7 @@
+{
+  "ci": {
+    "collect": { "staticDistDir": "apps/web-react/dist", "numberOfRuns": 2 },
+    "assert": { "assertions": { "categories:accessibility": ["error", { "minScore": 0.98 }] } },
+    "upload": { "target": "filesystem", "outputDir": "lhci-report" }
+  }
+}
