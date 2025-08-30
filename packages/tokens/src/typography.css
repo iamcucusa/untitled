@@ -1,0 +1,40 @@
+:root {
+  /* family & weights */
+  --font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* line heights */
+  --lh-header: 1.2;
+  --lh-paragraph: 1.5;
+
+  /* type scale (from typography.css classes) */
+  --fs-display-2xl: 4.5rem;
+  --lh-display-2xl: 5.625rem;
+  --fs-display-xl: 3.75rem;
+  --lh-display-xl: 4.625rem;
+  --fs-display-lg: 3rem;
+  --lh-display-lg: 3.75rem;
+  --fs-display-md: 2.25rem;
+  --lh-display-md: 2.75rem;
+  --fs-display-sm: 1.875rem;
+  --lh-display-sm: 2.375rem;
+  --fs-display-xs: 1.5rem;
+  --lh-display-xs: 2rem;
+
+  --fs-text-xl: 1.25rem;
+  --lh-text-xl: 1.875rem;
+  --fs-text-lg: 1.125rem;
+  --lh-text-lg: 1.75rem;
+  --fs-text-md: 1rem;
+  --lh-text-md: 1.5rem;
+  --fs-text-sm: 0.875rem;
+  --lh-text-sm: 1.25rem;
+  --fs-text-xs: 0.75rem;
+  --lh-text-xs: 1.125rem;
+
+  /* letter spacing (kept as your global) */
+  --letter-spacing: 0.2rem;
+}
