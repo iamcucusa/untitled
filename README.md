@@ -19,8 +19,8 @@ pnpm i
 pnpm dev   # launches React app
 ```
 
-To use with Angular/Vue, point Tailwind to `@untitled-ds/tokens/dist/tailwind/preset.cjs`
-and put imports first in the app’s Tailwind entry CSS:
+To use with Angular/Vue, point Tailwind to `@untitled-ds/tokens/dist/tailwind/preset.cjs` and put
+imports first in the app’s Tailwind entry CSS:
 
 - @import '@untitled-ds/tokens/dist/css/variables.css';
 - @import '@untitled-ds/styles/src/base.css';
