@@ -6,7 +6,8 @@
     "build": "pnpm -r run build",
     "dev": "pnpm -C apps/web-react dev",
     "lint": "echo 'add your linter setup'",
-    "typecheck": "echo 'add ts typecheck jobs'"
+    "typecheck": "echo 'add ts typecheck jobs'",
+    "postinstall": "pnpm -C packages/tokens build"
   },
   "devDependencies": {
     "typescript": "^5.5.4"
