@@ -14,7 +14,7 @@
   :root {
     color-scheme: light;
   }
-  .dark {
+  :root.dark {
     color-scheme: dark;
   }
 

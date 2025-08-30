@@ -32,7 +32,7 @@ function DarkModeToggle() {
       aria-pressed={dark}
       title="Toggle dark mode"
     >
-      {dark ? 'Dark ✓' : 'Light'}
+      {dark ? 'Dark ✓' : 'Light ✓'}
     </button>
   );
 }
@@ -58,16 +58,12 @@ function App() {
           Tailwind color utilities.
         </p>
         <p className="mt-3">
-          <a href="#" className="underline">
+          <a href="#" className="link">
             Token-driven link
-          </a>{' '}
-          • Try <kbd>Tab</kbd> below to see the focus ring.
+          </a>
         </p>
         <div className="mt-4">
-          <input
-            className="w-full rounded-md border px-3 py-2"
-            placeholder="Focus me to see the token-based :focus-visible outline"
-          />
+          <input className="input" placeholder="Focus me to see :focus-visible ring" />
         </div>
       </section>
 

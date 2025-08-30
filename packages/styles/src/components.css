@@ -30,4 +30,23 @@
     border-color: var(--border);
     box-shadow: var(--shadow-sm);
   }
+
+  .input {
+    @apply w-full rounded-md border px-3 py-2;
+    background: var(--card);
+    color: var(--fg);
+    border-color: var(--border);
+  }
+  .input::placeholder {
+    color: var(--muted);
+  }
+
+  .link {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .link:hover {
+    text-decoration-thickness: from-font;
+  }
 }
