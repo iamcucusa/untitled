@@ -1,0 +1,17 @@
+# deps & builds
+node_modules
+**/dist
+**/build
+coverage
+
+# package managers
+pnpm-lock.yaml
+
+# app outputs
+apps/*/dist
+
+# token builds
+packages/tokens/dist
+
+# misc
+.DS_Store
