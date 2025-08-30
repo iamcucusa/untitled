@@ -1,15 +1,58 @@
-/* Base (normalize + sensible defaults). You can import your existing normalize.css here if desired. */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-html {
-  -webkit-text-size-adjust: 100%;
-}
-body {
-  margin: 0;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  color: var(--color-gray-900);
-  background: var(--color-gray-25);
+@layer base {
+  /* Base (normalize + sensible defaults). Keep it tiny and token-driven. */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Prefer the OS palette when .dark is toggled */
+  :root {
+    color-scheme: light;
+  }
+  .dark {
+    color-scheme: dark;
+  }
+
+  body {
+    margin: 0;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Semantic tokens */
+    color: var(--fg);
+    background: var(--bg);
+  }
+
+  /* Default border color for everything that uses borders */
+  * {
+    border-color: var(--border);
+  }
+
+  /* Accessible focus outline (can be overridden by components) */
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  /* Basic link treatment based on semantic primary */
+  a {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  a:hover {
+    text-decoration-thickness: from-font;
+  }
+
+  /* Selection uses the palette but stays subtle */
+  ::selection {
+    background: var(--color-primary-100);
+    color: var(--fg);
+  }
 }

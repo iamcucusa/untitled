@@ -1,8 +1,8 @@
 @layer components {
   .btn {
     @apply inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium shadow-sm transition-colors;
-    background: var(--color-primary-600);
-    color: white;
+    background: var(--primary);
+    color: var(--on-primary);
   }
   .btn:hover {
     filter: brightness(0.95);
@@ -13,17 +13,21 @@
 
   .btn-outline {
     @apply border;
-    border-color: var(--color-primary-600);
-    color: var(--color-primary-600);
+    border-color: var(--primary);
+    color: var(--primary);
     background: transparent;
-  }
-  .btn-outline:hover {
-    background: color-mix(in hsl, var(--color-primary-50) 60%, white);
   }
 
   .badge {
     @apply inline-flex items-center rounded-full px-2.5 py-1 text-xs;
     background: var(--color-gray-100);
     color: var(--color-gray-700);
+  }
+
+  .card {
+    @apply rounded-md border;
+    background: var(--card);
+    border-color: var(--border);
+    box-shadow: var(--shadow-sm);
   }
 }
