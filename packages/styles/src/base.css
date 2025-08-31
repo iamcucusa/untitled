@@ -62,4 +62,14 @@
   }
   .skip-link:focus { left: 1rem; top: 1rem; z-index: 50; }
 
+  /* Safety net: clamp unknown animations/transitions from third-party code */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
 }

@@ -60,3 +60,13 @@
   --primary-surface-strong: var(--color-primary-800);
 
 }
+
+/* Reduce motion: zero-out token durations so all DS transitions shrink automatically */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-1: 0ms;
+    --dur-2: 0ms;
+    --dur-3: 0ms;
+    --dur-4: 0ms;
+  }
+}

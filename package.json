@@ -19,9 +19,10 @@
     "postinstall": "pnpm -C packages/tokens build",
     "lint": "echo 'add your linter setup'",
     "typecheck": "echo 'add ts typecheck jobs'",
-    "a11y:lh": "pnpm -C packages/tokens build && pnpm -C apps/web-react build && lhci autorun --config=.lighthouserc.json",
+    "a11y:lh": "pnpm -C apps/web-react build && pnpm dlx @lhci/cli@0.13.0 autorun --config=.lighthouserc.json",
     "a11y:axe": "playwright test -c apps/web-react/tests/playwright.config.ts",
-    "a11y:all": "pnpm run a11y:lh && pnpm run a11y:axe"
+    "a11y:rm": "playwright test -c apps/web-react/tests/playwright.config.ts apps/web-react/tests/a11y/reduced-motion.spec.ts",
+    "a11y:all": "pnpm run a11y:lh && pnpm run a11y:axe && pnpm run a11y:rm"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
