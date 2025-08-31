@@ -57,19 +57,30 @@
   }
 
   .skip-link {
-    position: absolute; left: -9999px; top: 0; padding: .5rem .75rem;
-    background: var(--card); color: var(--fg); border: 2px solid var(--focus-ring); border-radius: var(--radius-sm);
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    padding: 0.5rem 0.75rem;
+    background: var(--card);
+    color: var(--fg);
+    border: 2px solid var(--focus-ring);
+    border-radius: var(--radius-sm);
   }
-  .skip-link:focus { left: 1rem; top: 1rem; z-index: 50; }
+  .skip-link:focus {
+    left: 1rem;
+    top: 1rem;
+    z-index: 50;
+  }
 
   /* Safety net: clamp unknown animations/transitions from third-party code */
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
   }
-
 }

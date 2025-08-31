@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createPortal } from 'react-dom';
 import './tailwind.css';
@@ -39,12 +39,11 @@ function DarkModeToggle() {
 }
 
 function OverlayDemo() {
-  const [open, setOpen] = useState(false);
-  const triggerRef = useRef<HTMLButtonElement | null>(null);
-  const dialogRef = useRef<HTMLDivElement | null>(null);
+  const [open, setOpen] = React.useState(false);
+  const triggerRef = React.useRef<HTMLButtonElement | null>(null);
+  const dialogRef = React.useRef<HTMLDivElement | null>(null);
 
-  // When open: lock scroll, hide app from AT, focus first item, trap focus, restore focus on close
-  useEffect(() => {
+  React.useEffect(() => {
     if (!open) return;
 
     const rootEl = document.getElementById('root');
@@ -94,15 +93,28 @@ function OverlayDemo() {
 
     document.addEventListener('keydown', onKeyDown);
 
-    // cleanup: restore scroll & aria-hidden; return focus to trigger
+    // capture current trigger for cleanup (fixes ref warning)
+    const trigger = triggerRef.current;
+
     return () => {
       document.body.style.overflow = prevOverflow;
       if (prevAriaHidden == null) rootEl?.removeAttribute('aria-hidden');
       else rootEl?.setAttribute('aria-hidden', prevAriaHidden);
       document.removeEventListener('keydown', onKeyDown);
-      triggerRef.current?.focus();
+      trigger?.focus();
     };
   }, [open]);
+
+  // keyboard-accessible backdrop: Enter/Space closes, click only when target===currentTarget
+  const onBackdropKey = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setOpen(false);
+    }
+  };
+  const onBackdropMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) setOpen(false);
+  };
 
   return (
     <section className="space-y-3">
@@ -120,7 +132,14 @@ function OverlayDemo() {
 
       {open &&
         createPortal(
-          <div className="overlay" onClick={() => setOpen(false)}>
+          <div
+            className="overlay"
+            role="button"
+            tabIndex={0}
+            aria-label="Close dialog (click background or press Escape/Enter)"
+            onKeyDown={onBackdropKey}
+            onMouseDown={onBackdropMouseDown}
+          >
             <div
               id="demo-dialog"
               ref={dialogRef}
@@ -129,14 +148,12 @@ function OverlayDemo() {
               aria-labelledby="dialog-title"
               aria-describedby="dialog-desc"
               className="card w-[min(100%,28rem)] max-w-md rounded-xl p-6 shadow-lg"
-              onClick={(e) => e.stopPropagation()}
             >
               <h3 id="dialog-title" className="mb-2 text-lg font-semibold">
                 Token Overlay
               </h3>
               <p id="dialog-desc" className="text-sm">
-                Backdrop uses <code>--overlay</code>. Click outside or press Esc to close. Toggle
-                Dark to see it adapt.
+                Backdrop uses <code>--overlay</code>. Press Esc or Enter on the backdrop to close.
               </p>
               <div className="mt-4 flex justify-end">
                 <button className="btn" onClick={() => setOpen(false)} data-close>
@@ -190,12 +207,14 @@ function FormDemo() {
     const ok = validate(form);
     setSubmitted(true);
     if (ok) {
-      // simulate success
-      alert('Form submitted ✔'); // replace with real action later
+      alert('Form submitted ✔');
       form.reset();
-      // clear a11y states after reset
-      (form.name as any).setAttribute('aria-invalid', 'false');
-      (form.email as any).setAttribute('aria-invalid', 'false');
+
+      const nameEl = form.elements.namedItem('name') as HTMLInputElement | null;
+      const emailEl = form.elements.namedItem('email') as HTMLInputElement | null;
+      nameEl?.setAttribute('aria-invalid', 'false');
+      emailEl?.setAttribute('aria-invalid', 'false');
+
       setErrors({});
       setSubmitted(false);
     }
@@ -442,9 +461,9 @@ function App() {
               hard-coded Tailwind color utilities.
             </p>
             <p className="mt-3">
-              <a href="#" className="link">
-                Token-driven link
-              </a>{' '}
+              <button type="button" className="link">
+                Token-styled button
+              </button>{' '}
               • Try <kbd>Tab</kbd> below to see the focus ring.
             </p>
             <div className="mt-4">

@@ -58,7 +58,6 @@
   --primary-active: var(--color-primary-400);
   --primary-surface: var(--color-primary-900);
   --primary-surface-strong: var(--color-primary-800);
-
 }
 
 /* Reduce motion: zero-out token durations so all DS transitions shrink automatically */

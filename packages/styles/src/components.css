@@ -6,8 +6,12 @@
     transition: all var(--dur-2) var(--ease-standard);
     cursor: pointer;
   }
-  .btn:hover { background: var(--primary-hover); }
-  .btn:active { background: var(--primary-active); }
+  .btn:hover {
+    background: var(--primary-hover);
+  }
+  .btn:active {
+    background: var(--primary-active);
+  }
   .btn:disabled {
     opacity: 0.6;
     cursor: not-allowed;
@@ -22,11 +26,19 @@
     cursor: pointer;
   }
 
-  .btn-outline:hover { background: var(--primary-surface); }
-  .btn-outline:active { background: var(--primary-surface-strong); }
-  .btn-outline:disabled { cursor: not-allowed; }
+  .btn-outline:hover {
+    background: var(--primary-surface);
+  }
+  .btn-outline:active {
+    background: var(--primary-surface-strong);
+  }
+  .btn-outline:disabled {
+    cursor: not-allowed;
+  }
   .btn-outline:disabled:hover,
-  .btn-outline:disabled:active { background: transparent; }
+  .btn-outline:disabled:active {
+    background: transparent;
+  }
 
   .badge {
     @apply inline-flex items-center rounded-full px-2.5 py-1 text-xs;
@@ -88,7 +100,9 @@
 
   /* --- Forms (accessible defaults) --- */
 
-  .field { @apply space-y-1; }
+  .field {
+    @apply space-y-1;
+  }
 
   .field-label {
     @apply block text-sm font-medium;
@@ -111,7 +125,7 @@
   }
 
   /* Invalid input state driven by aria-invalid */
-  .input[aria-invalid="true"] {
+  .input[aria-invalid='true'] {
     border-color: var(--error);
     box-shadow: 0 0 0 1px var(--error) inset;
   }
@@ -119,12 +133,12 @@
   /* --- Choice groups (fieldset/legend) --- */
 
   .fieldset {
-    @apply rounded-md border p-3 space-y-3;
+    @apply space-y-3 rounded-md border p-3;
     border-color: var(--border);
     background: var(--card);
   }
   /* invalid state driven by a data attribute set by JS */
-  .fieldset[data-invalid="true"] {
+  .fieldset[data-invalid='true'] {
     border-color: var(--error);
     box-shadow: 0 0 0 1px var(--error) inset;
   }
@@ -132,12 +146,10 @@
   .legend {
     @apply text-sm font-medium;
     color: var(--fg);
-    padding: 0 .25rem;
+    padding: 0 0.25rem;
   }
 
   .option {
     @apply flex items-center gap-2;
   }
-
-
 }
