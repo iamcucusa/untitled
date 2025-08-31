@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
+import { createPortal } from 'react-dom';
 import './tailwind.css';
 
 function DarkModeToggle() {
@@ -37,12 +38,127 @@ function DarkModeToggle() {
   );
 }
 
+function OverlayDemo() {
+  const [open, setOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
+  const dialogRef = useRef<HTMLDivElement | null>(null);
+
+  // When open: lock scroll, hide app from AT, focus first item, trap focus, restore focus on close
+  useEffect(() => {
+    if (!open) return;
+
+    const rootEl = document.getElementById('root');
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const prevAriaHidden = rootEl?.getAttribute('aria-hidden');
+    rootEl?.setAttribute('aria-hidden', 'true');
+
+    // focus first focusable (Close button)
+    const first = dialogRef.current?.querySelector<HTMLElement>(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+    );
+    first?.focus();
+
+    // ESC and focus trap
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (!dialogRef.current) return;
+
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        setOpen(false);
+        return;
+      }
+      if (e.key !== 'Tab') return;
+
+      const nodes = dialogRef.current.querySelectorAll<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      );
+      const focusables = Array.from(nodes).filter(
+        (el) => !el.hasAttribute('disabled') && el.getAttribute('aria-hidden') !== 'true',
+      );
+      if (focusables.length === 0) return;
+
+      const firstEl = focusables[0];
+      const lastEl = focusables[focusables.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+
+      if (e.shiftKey && active === firstEl) {
+        e.preventDefault();
+        lastEl.focus();
+      } else if (!e.shiftKey && active === lastEl) {
+        e.preventDefault();
+        firstEl.focus();
+      }
+    };
+
+    document.addEventListener('keydown', onKeyDown);
+
+    // cleanup: restore scroll & aria-hidden; return focus to trigger
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      if (prevAriaHidden == null) rootEl?.removeAttribute('aria-hidden');
+      else rootEl?.setAttribute('aria-hidden', prevAriaHidden);
+      document.removeEventListener('keydown', onKeyDown);
+      triggerRef.current?.focus();
+    };
+  }, [open]);
+
+  return (
+    <section className="space-y-3">
+      <h2 className="text-lg font-semibold">Overlay</h2>
+      <button
+        ref={triggerRef}
+        className="btn btn-outline"
+        onClick={() => setOpen(true)}
+        aria-haspopup="dialog"
+        aria-expanded={open}
+        aria-controls="demo-dialog"
+      >
+        Open overlay
+      </button>
+
+      {open &&
+        createPortal(
+          <div className="overlay" onClick={() => setOpen(false)}>
+            <div
+              id="demo-dialog"
+              ref={dialogRef}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="dialog-title"
+              aria-describedby="dialog-desc"
+              className="card w-[min(100%,28rem)] max-w-md rounded-xl p-6 shadow-lg"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h3 id="dialog-title" className="mb-2 text-lg font-semibold">
+                Token Overlay
+              </h3>
+              <p id="dialog-desc" className="text-sm">
+                Backdrop uses <code>--overlay</code>. Click outside or press Esc to close. Toggle
+                Dark to see it adapt.
+              </p>
+              <div className="mt-4 flex justify-end">
+                <button className="btn" onClick={() => setOpen(false)} data-close>
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>,
+          document.body,
+        )}
+    </section>
+  );
+}
+
 function App() {
   return (
     <>
+      {/* Skip link first so keyboard users can jump straight to content */}
       <a className="skip-link" href="#main">
         Skip to content
       </a>
+
       <div className="space-y-8 p-6">
         <header className="flex items-center justify-between">
           <h1 className="text-2xl font-semibold">Design System • React</h1>
@@ -55,6 +171,7 @@ function App() {
         </header>
 
         <main id="main" tabIndex={-1} className="space-y-8">
+          {/* Card uses semantic tokens (card/bg/fg/border) */}
           <section className="card p-4 shadow-sm">
             <p>
               This React app consumes the shared tokens, styles, and Tailwind preset. Colors come
@@ -101,42 +218,11 @@ function App() {
             </div>
           </section>
 
-          {/* Overlay demo (backdrop uses --overlay token; works in light/dark) */}
+          {/* Overlay demo (accessible: focus trap, ESC, restore focus) */}
           <OverlayDemo />
         </main>
       </div>
     </>
-  );
-}
-
-function OverlayDemo() {
-  const [open, setOpen] = useState(false);
-  return (
-    <section className="space-y-3">
-      <h2 className="text-lg font-semibold">Overlay</h2>
-      <button className="btn btn-outline" onClick={() => setOpen(true)}>
-        Open overlay
-      </button>
-      {open && (
-        <div className="overlay" onClick={() => setOpen(false)}>
-          <div
-            className="card w-[min(100%,28rem)] max-w-md rounded-xl p-6 shadow-lg"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h3 className="mb-2 text-lg font-semibold">Token Overlay</h3>
-            <p className="text-sm">
-              Backdrop uses <code>--overlay</code>. Click outside to close. Toggle Dark to see it
-              adapt.
-            </p>
-            <div className="mt-4 flex justify-end">
-              <button className="btn" onClick={() => setOpen(false)}>
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </section>
   );
 }
 
