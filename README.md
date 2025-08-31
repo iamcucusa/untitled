@@ -1,3 +1,4 @@
+![Framework-agnostic design system](docs/social-preview.jpg)
 # Monorepo Design System (Tokens → Tailwind Preset → Multi-Framework)
 
 Cross-framework design system used by React (demo app today) and ready for Angular/Vue.  
