@@ -151,6 +151,136 @@ function OverlayDemo() {
   );
 }
 
+function FormDemo() {
+  const [submitted, setSubmitted] = React.useState(false);
+  const [errors, setErrors] = React.useState<{ email?: string; name?: string }>({});
+
+  function validate(form: HTMLFormElement) {
+    const next: { email?: string; name?: string } = {};
+    const name = form.name as unknown as HTMLInputElement;
+    const email = form.email as unknown as HTMLInputElement;
+
+    if (!name.value.trim()) next.name = 'Name is required.';
+    if (!email.validity.valid) {
+      if (email.validity.valueMissing) next.email = 'Email is required.';
+      else if (email.validity.typeMismatch) next.email = 'Please enter a valid email address.';
+    }
+    setErrors(next);
+
+    // Reflect validity on the controls for styling + AT
+    name.setAttribute('aria-invalid', String(Boolean(next.name)));
+    email.setAttribute('aria-invalid', String(Boolean(next.email)));
+
+    // Wire aria-describedby to hint + (optional) error id
+    name.setAttribute(
+      'aria-describedby',
+      ['name-hint', next.name ? 'name-error' : ''].filter(Boolean).join(' '),
+    );
+    email.setAttribute(
+      'aria-describedby',
+      ['email-hint', next.email ? 'email-error' : ''].filter(Boolean).join(' '),
+    );
+
+    return Object.keys(next).length === 0;
+  }
+
+  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const ok = validate(form);
+    setSubmitted(true);
+    if (ok) {
+      // simulate success
+      alert('Form submitted ✔'); // replace with real action later
+      form.reset();
+      // clear a11y states after reset
+      (form.name as any).setAttribute('aria-invalid', 'false');
+      (form.email as any).setAttribute('aria-invalid', 'false');
+      setErrors({});
+      setSubmitted(false);
+    }
+  }
+
+  function onBlur(e: React.FocusEvent<HTMLFormElement>) {
+    // validate the whole form on blur of a field (simple, but effective)
+    validate(e.currentTarget);
+  }
+
+  return (
+    <section className="space-y-4">
+      <h2 className="text-lg font-semibold">Form (labels, hints, errors)</h2>
+
+      <form noValidate className="max-w-md space-y-4" onSubmit={onSubmit} onBlur={onBlur}>
+        {/* Name */}
+        <div className="field">
+          <label htmlFor="name" className="field-label">
+            Name{' '}
+            <span className="required-indicator" aria-hidden="true">
+              *
+            </span>
+          </label>
+          <input
+            id="name"
+            name="name"
+            className="input"
+            placeholder="Ada Lovelace"
+            required
+            aria-describedby="name-hint"
+            aria-invalid="false"
+          />
+          <p id="name-hint" className="field-hint">
+            Please enter your full name.
+          </p>
+          {errors.name && (
+            <p id="name-error" className="field-error" role="alert">
+              {errors.name}
+            </p>
+          )}
+        </div>
+
+        {/* Email */}
+        <div className="field">
+          <label htmlFor="email" className="field-label">
+            Email{' '}
+            <span className="required-indicator" aria-hidden="true">
+              *
+            </span>
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            className="input"
+            placeholder="ada@example.com"
+            required
+            aria-describedby="email-hint"
+            aria-invalid="false"
+          />
+          <p id="email-hint" className="field-hint">
+            We’ll never share your email.
+          </p>
+          {errors.email && (
+            <p id="email-error" className="field-error" role="alert">
+              {errors.email}
+            </p>
+          )}
+        </div>
+
+        <div className="flex items-center gap-3">
+          <button className="btn" type="submit">
+            Submit
+          </button>
+          {submitted && Object.keys(errors).length === 0 && (
+            <span className="badge badge--success" aria-live="polite">
+              Looks good
+            </span>
+          )}
+        </div>
+      </form>
+    </section>
+  );
+}
+
 function App() {
   return (
     <>
@@ -220,6 +350,8 @@ function App() {
 
           {/* Overlay demo (accessible: focus trap, ESC, restore focus) */}
           <OverlayDemo />
+          {/* Forms & Errors (accessible wiring) */}
+          <FormDemo />
         </main>
       </div>
     </>

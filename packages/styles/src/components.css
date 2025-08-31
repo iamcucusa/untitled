@@ -85,4 +85,35 @@
   .link:hover {
     filter: brightness(0.98);
   }
+
+  /* --- Forms (accessible defaults) --- */
+
+  .field { @apply space-y-1; }
+
+  .field-label {
+    @apply block text-sm font-medium;
+    color: var(--fg);
+  }
+
+  .required-indicator {
+    @apply ml-0.5;
+    color: var(--error);
+  }
+
+  .field-hint {
+    @apply text-sm;
+    color: var(--muted);
+  }
+
+  .field-error {
+    @apply text-sm;
+    color: var(--error);
+  }
+
+  /* Invalid input state driven by aria-invalid */
+  .input[aria-invalid="true"] {
+    border-color: var(--error);
+    box-shadow: 0 0 0 1px var(--error) inset;
+  }
+
 }
