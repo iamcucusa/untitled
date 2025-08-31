@@ -281,6 +281,138 @@ function FormDemo() {
   );
 }
 
+function FormChoicesDemo() {
+  const [errors, setErrors] = React.useState<{ contact?: string; interests?: string }>({});
+
+  function validate(form: HTMLFormElement) {
+    const next: { contact?: string; interests?: string } = {};
+
+    // Radios (required: one selected)
+    const contactValue = (form.elements.namedItem('contact') as RadioNodeList).value;
+    if (!contactValue) next.contact = 'Choose at least one contact method.';
+
+    // Checkboxes (at least one)
+    const interestsChecked = form.querySelectorAll<HTMLInputElement>(
+      'input[name="interests"]:checked',
+    );
+    if (interestsChecked.length === 0) next.interests = 'Select at least one interest.';
+
+    // Reflect validity visually & for AT
+    const contactFs = form.querySelector<HTMLFieldSetElement>('#contact-group');
+    const interestsFs = form.querySelector<HTMLFieldSetElement>('#interests-group');
+
+    contactFs?.setAttribute('data-invalid', String(Boolean(next.contact)));
+    interestsFs?.setAttribute('data-invalid', String(Boolean(next.interests)));
+
+    contactFs?.setAttribute(
+      'aria-describedby',
+      ['contact-hint', next.contact ? 'contact-error' : ''].filter(Boolean).join(' '),
+    );
+    interestsFs?.setAttribute(
+      'aria-describedby',
+      ['interests-hint', next.interests ? 'interests-error' : ''].filter(Boolean).join(' '),
+    );
+
+    setErrors(next);
+    return Object.keys(next).length === 0;
+  }
+
+  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    if (validate(form)) {
+      alert('Choices submitted ✔'); // replace with real action later
+      form.reset();
+      // clear invalid states
+      form
+        .querySelectorAll('fieldset[data-invalid="true"]')
+        .forEach((fs) => fs.setAttribute('data-invalid', 'false'));
+      setErrors({});
+    }
+  }
+
+  function onChange(e: React.FormEvent<HTMLFormElement>) {
+    // live-validate as user interacts
+    validate(e.currentTarget);
+  }
+
+  return (
+    <section className="space-y-4">
+      <h2 className="text-lg font-semibold">Choices (radios + checkboxes)</h2>
+
+      <form noValidate className="max-w-md space-y-5" onSubmit={onSubmit} onChange={onChange}>
+        {/* Radio group */}
+        <fieldset id="contact-group" className="fieldset" aria-describedby="contact-hint">
+          <legend className="legend">
+            Preferred contact method{' '}
+            <span className="required-indicator" aria-hidden="true">
+              *
+            </span>
+          </legend>
+
+          <div className="option">
+            <input id="contact-email" type="radio" name="contact" value="email" required />
+            <label htmlFor="contact-email">Email</label>
+          </div>
+          <div className="option">
+            <input id="contact-phone" type="radio" name="contact" value="phone" />
+            <label htmlFor="contact-phone">Phone</label>
+          </div>
+          <div className="option">
+            <input id="contact-sms" type="radio" name="contact" value="sms" />
+            <label htmlFor="contact-sms">SMS</label>
+          </div>
+
+          <p id="contact-hint" className="field-hint">
+            We’ll use this to follow up.
+          </p>
+          {errors.contact && (
+            <p id="contact-error" className="field-error" role="alert">
+              {errors.contact}
+            </p>
+          )}
+        </fieldset>
+
+        {/* Checkbox group */}
+        <fieldset id="interests-group" className="fieldset" aria-describedby="interests-hint">
+          <legend className="legend">
+            Topics of interest{' '}
+            <span className="required-indicator" aria-hidden="true">
+              *
+            </span>
+          </legend>
+
+          <div className="option">
+            <input id="int-design" type="checkbox" name="interests" value="design" />
+            <label htmlFor="int-design">Design systems</label>
+          </div>
+          <div className="option">
+            <input id="int-accessibility" type="checkbox" name="interests" value="a11y" />
+            <label htmlFor="int-accessibility">Accessibility</label>
+          </div>
+          <div className="option">
+            <input id="int-graphQL" type="checkbox" name="interests" value="graphql" />
+            <label htmlFor="int-graphQL">GraphQL</label>
+          </div>
+
+          <p id="interests-hint" className="field-hint">
+            Pick one or more.
+          </p>
+          {errors.interests && (
+            <p id="interests-error" className="field-error" role="alert">
+              {errors.interests}
+            </p>
+          )}
+        </fieldset>
+
+        <button className="btn" type="submit">
+          Submit choices
+        </button>
+      </form>
+    </section>
+  );
+}
+
 function App() {
   return (
     <>
@@ -348,10 +480,12 @@ function App() {
             </div>
           </section>
 
-          {/* Overlay demo (accessible: focus trap, ESC, restore focus) */}
-          <OverlayDemo />
           {/* Forms & Errors (accessible wiring) */}
           <FormDemo />
+          {/* Radio + Checkbox groups (fieldset/legend) */}
+          <FormChoicesDemo />
+          {/* Overlay demo (accessible: focus trap, ESC, restore focus) */}
+          <OverlayDemo />
         </main>
       </div>
     </>

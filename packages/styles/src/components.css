@@ -116,4 +116,28 @@
     box-shadow: 0 0 0 1px var(--error) inset;
   }
 
+  /* --- Choice groups (fieldset/legend) --- */
+
+  .fieldset {
+    @apply rounded-md border p-3 space-y-3;
+    border-color: var(--border);
+    background: var(--card);
+  }
+  /* invalid state driven by a data attribute set by JS */
+  .fieldset[data-invalid="true"] {
+    border-color: var(--error);
+    box-shadow: 0 0 0 1px var(--error) inset;
+  }
+
+  .legend {
+    @apply text-sm font-medium;
+    color: var(--fg);
+    padding: 0 .25rem;
+  }
+
+  .option {
+    @apply flex items-center gap-2;
+  }
+
+
 }
