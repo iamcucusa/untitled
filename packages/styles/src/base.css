@@ -55,4 +55,11 @@
     background: var(--color-primary-100);
     color: var(--fg);
   }
+
+  .skip-link {
+    position: absolute; left: -9999px; top: 0; padding: .5rem .75rem;
+    background: var(--card); color: var(--fg); border: 2px solid var(--focus-ring); border-radius: var(--radius-sm);
+  }
+  .skip-link:focus { left: 1rem; top: 1rem; z-index: 50; }
+
 }

@@ -39,66 +39,73 @@ function DarkModeToggle() {
 
 function App() {
   return (
-    <div className="space-y-8 p-6">
-      <header className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">Design System • React</h1>
-        <div className="flex items-center gap-2">
-          <DarkModeToggle />
-          <button className="btn">Primary</button>
-          <button className="btn btn-outline">Outline</button>
-          <span className="badge">Beta</span>
-        </div>
-      </header>
+    <>
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
+      <div className="space-y-8 p-6">
+        <header className="flex items-center justify-between">
+          <h1 className="text-2xl font-semibold">Design System • React</h1>
+          <div className="flex items-center gap-2">
+            <DarkModeToggle />
+            <button className="btn">Primary</button>
+            <button className="btn btn-outline">Outline</button>
+            <span className="badge">Beta</span>
+          </div>
+        </header>
 
-      {/* Card uses semantic tokens (card/bg/fg/border) */}
-      <section className="card p-4 shadow-sm">
-        <p>
-          This React app consumes the shared tokens, styles, and Tailwind preset. Colors come from
-          <code className="mx-1 rounded border px-1">:root</code> semantic tokens, not hard-coded
-          Tailwind color utilities.
-        </p>
-        <p className="mt-3">
-          <a href="#" className="link">
-            Token-driven link
-          </a>{' '}
-          • Try <kbd>Tab</kbd> below to see the focus ring.
-        </p>
-        <div className="mt-4">
-          <input
-            className="input"
-            placeholder="Focus me to see the token-based :focus-visible outline"
-          />
-        </div>
-      </section>
+        <main id="main" tabIndex={-1} className="space-y-8">
+          <section className="card p-4 shadow-sm">
+            <p>
+              This React app consumes the shared tokens, styles, and Tailwind preset. Colors come
+              from
+              <code className="mx-1 rounded border px-1">:root</code> semantic tokens, not
+              hard-coded Tailwind color utilities.
+            </p>
+            <p className="mt-3">
+              <a href="#" className="link">
+                Token-driven link
+              </a>{' '}
+              • Try <kbd>Tab</kbd> below to see the focus ring.
+            </p>
+            <div className="mt-4">
+              <input
+                className="input"
+                placeholder="Focus me to see the token-based :focus-visible outline"
+              />
+            </div>
+          </section>
 
-      {/* Shadows mapped via Tailwind preset → token variables */}
-      <section className="space-y-4">
-        <h2 className="text-lg font-semibold">Shadows</h2>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          <div className="card shadow-xs p-4">shadow-xs</div>
-          <div className="card p-4 shadow-sm">shadow-sm</div>
-          <div className="card p-4 shadow-md">shadow-md</div>
-          <div className="card p-4 shadow-lg">shadow-lg</div>
-          <div className="card p-4 shadow-xl">shadow-xl</div>
-          <div className="card p-4 shadow-2xl">shadow-2xl</div>
-        </div>
-      </section>
+          {/* Shadows mapped via Tailwind preset → token variables */}
+          <section className="space-y-4">
+            <h2 className="text-lg font-semibold">Shadows</h2>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              <div className="card shadow-xs p-4">shadow-xs</div>
+              <div className="card p-4 shadow-sm">shadow-sm</div>
+              <div className="card p-4 shadow-md">shadow-md</div>
+              <div className="card p-4 shadow-lg">shadow-lg</div>
+              <div className="card p-4 shadow-xl">shadow-xl</div>
+              <div className="card p-4 shadow-2xl">shadow-2xl</div>
+            </div>
+          </section>
 
-      {/* Radii showcase (token-mapped rounded-* via Tailwind preset) */}
-      <section className="space-y-4">
-        <h2 className="text-lg font-semibold">Radii</h2>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-5">
-          <div className="card rounded-sm p-4 text-sm">rounded-sm</div>
-          <div className="card rounded-md p-4 text-sm">rounded-md</div>
-          <div className="card rounded-lg p-4 text-sm">rounded-lg</div>
-          <div className="card rounded-xl p-4 text-sm">rounded-xl</div>
-          <div className="card rounded-2xl p-4 text-sm">rounded-2xl</div>
-        </div>
-      </section>
+          {/* Radii showcase (token-mapped rounded-* via Tailwind preset) */}
+          <section className="space-y-4">
+            <h2 className="text-lg font-semibold">Radii</h2>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-5">
+              <div className="card rounded-sm p-4 text-sm">rounded-sm</div>
+              <div className="card rounded-md p-4 text-sm">rounded-md</div>
+              <div className="card rounded-lg p-4 text-sm">rounded-lg</div>
+              <div className="card rounded-xl p-4 text-sm">rounded-xl</div>
+              <div className="card rounded-2xl p-4 text-sm">rounded-2xl</div>
+            </div>
+          </section>
 
-      {/* Overlay demo (backdrop uses --overlay token; works in light/dark) */}
-      <OverlayDemo />
-    </div>
+          {/* Overlay demo (backdrop uses --overlay token; works in light/dark) */}
+          <OverlayDemo />
+        </main>
+      </div>
+    </>
   );
 }
 
