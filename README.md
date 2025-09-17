@@ -3,6 +3,7 @@
 
 Cross-framework design system used by React (demo app today) and ready for Angular/Vue.  
 Focus: **design tokens → Tailwind preset → small, framework-agnostic CSS layers**, with measurable **accessibility**.
+Now includes **Intl utilities** (`@untitled-ds/intl-core`) for locale negotiation, currency, date, and plural formatting.
 
 ## Quick start
 
@@ -10,6 +11,17 @@ Focus: **design tokens → Tailwind preset → small, framework-agnostic CSS lay
  pnpm i
  pnpm -C packages/tokens build   # tokens → dist/css/variables.css + dist/tailwind/preset.cjs
  pnpm dev                        # React app on http://localhost:5173
+```
+## Dev tips
+
+This repo uses **dist-only consumption** for internal packages.
+Run the build libs before running the apps: 
+```bash
+pnpm build:libs
+```
+To watch and rebuild libs while running the app
+```bash
+pnpm dev:watch
 ```
 
 ## Accessibility (measured)
@@ -50,6 +62,7 @@ Any time:
 - `@untitled-ds/tokens` — source of truth → CSS variables + Tailwind preset
 - `@untitled-ds/styles` — global CSS layers (base, components, utilities)
 - `@untitled-ds/presets` — Tailwind preset entry (maps tokens → theme)
+- `@untitled-ds/intl-core` — **lightweight Intl wrappers** for number, date, currency, plural, and locale negotiation
 
 ### Apps
 
