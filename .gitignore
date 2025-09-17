@@ -14,7 +14,6 @@ packages/tokens/dist/
 
 # Dependencies
 node_modules
-pnpm-lock.yaml
 
 # Build
 dist
