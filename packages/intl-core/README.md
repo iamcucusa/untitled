@@ -1,6 +1,9 @@
 # @untitled-ds/intl-core
 
-Lightweight, memoized wrappers around the native [`Intl`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) APIs for formatting numbers, currencies, dates, relative time, and plural categories; plus safe locale negotiation.
+Lightweight, memoized wrappers around the native
+[`Intl`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) APIs
+for formatting numbers, currencies, dates, relative time, and plural categories; plus safe locale
+negotiation.
 
 ## ✨ Features
 
@@ -23,17 +26,17 @@ import {
   getPluralCategory,
   asLocale,
   asCurrency,
-  negotiateLocale
+  negotiateLocale,
 } from '@untitled-ds/intl-core';
 
 const locale = asLocale('es-ES');
 const currency = asCurrency('EUR');
 
-formatCurrency(1299.95, locale, currency);         // → "1.299,95 €"
-formatNumber(0.65, locale, { style: 'percent' });  // → "65 %"
+formatCurrency(1299.95, locale, currency); // → "1.299,95 €"
+formatNumber(0.65, locale, { style: 'percent' }); // → "65 %"
 formatDate(new Date(), locale, { dateStyle: 'long' });
-formatRelativeTime(-3, 'day', locale);             // → "hace 3 días"
-getPluralCategory(1, locale);                      // → "one"
+formatRelativeTime(-3, 'day', locale); // → "hace 3 días"
+getPluralCategory(1, locale); // → "one"
 ```
 
 ## 🧠 Best practices
@@ -42,16 +45,16 @@ getPluralCategory(1, locale);                      // → "one"
 - ⚙️ Built with "target": "ES2022" and "module": "ES2022" for modern bundlers.
 - 📦 Works in React, Angular, Vue, Web Components — no framework bindings included (see adapters).
 
-##  📁 Package structure
+## 📁 Package structure
 
-- brands.ts → Branded types: Locale, CurrencyCode 
-- cache.ts → Memoization store 
-- number.ts → formatNumber, formatCurrency 
-- date.ts, relative.ts → formatDate, formatRelativeTime 
-- plural.ts → getPluralCategory 
+- brands.ts → Branded types: Locale, CurrencyCode
+- cache.ts → Memoization store
+- number.ts → formatNumber, formatCurrency
+- date.ts, relative.ts → formatDate, formatRelativeTime
+- plural.ts → getPluralCategory
 - negotiate.ts → negotiateLocale(...)
 
-##  📦 Build
+## 📦 Build
 
 ```bash
 pnpm -C packages/intl-core build

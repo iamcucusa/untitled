@@ -9,10 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@untitled-ds/intl-core": "workspace:*",
     "@untitled-ds/presets": "workspace:*",
     "@untitled-ds/styles": "workspace:*",
     "@untitled-ds/tokens": "workspace:*",
-    "@untitled-ds/intl-core": "workspace:*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
