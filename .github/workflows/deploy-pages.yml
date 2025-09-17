@@ -46,11 +46,24 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # Build libraries that the app consumes from dist (dist-only model)
       - name: Build intl-core
         run: pnpm -C packages/intl-core build
 
-      - name: Build web-react
+      - name: Build tokens
+        run: pnpm -C packages/tokens build
+
+      # Build the app with the correct base for GitHub Pages
+      # VITE_BASE ensures assets resolve under /{repo}/ instead of /
+      - name: Build web-react (GitHub Pages base)
+        env:
+          CI: true
+          VITE_BASE: "/${{ github.event.repository.name }}/"
         run: pnpm -C apps/web-react build
+
+      # Add SPA fallback so deep links work on Pages
+      - name: Add SPA 404 fallback
+        run: cp apps/web-react/dist/index.html apps/web-react/dist/404.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
