@@ -1,0 +1,29 @@
+/**
+ * Negotiates the best supported locale.
+ * Strategy: exact match → base language match → fallback.
+ */
+export function negotiateLocale<SupportedLocales extends readonly string[]>(
+  requestedLocales: readonly string[],
+  supportedLocales: SupportedLocales,
+  fallbackLocale: SupportedLocales[number],
+): SupportedLocales[number] {
+  // 1) Exact match (e.g., 'es-ES' === 'es-ES')
+  for (const requested of requestedLocales) {
+    if ((supportedLocales as readonly string[]).includes(requested)) {
+      return requested as SupportedLocales[number];
+    }
+  }
+
+  // 2) Base language match (e.g., 'es-MX' → 'es')
+  const baseOf = (tag: string) => tag.toLowerCase().split('-')[0];
+  const requestedBaseLanguages = requestedLocales.map(baseOf);
+
+  for (const supported of supportedLocales) {
+    if (requestedBaseLanguages.includes(baseOf(supported))) {
+      return supported as SupportedLocales[number];
+    }
+  }
+
+  // 3) Fallback
+  return fallbackLocale;
+}
