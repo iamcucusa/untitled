@@ -2,6 +2,10 @@
 
 # Monorepo Design System (Tokens → Tailwind Preset → Multi-Framework)
 
+[![CI](https://github.com/iamcucusa/untitled/actions/workflows/ci.yml/badge.svg)](https://github.com/iamcucusa/untitled/actions/workflows/ci.yml)
+[![A11y & Perf](https://github.com/iamcucusa/untitled/actions/workflows/a11y.yml/badge.svg)](https://github.com/iamcucusa/untitled/actions/workflows/a11y.yml)
+[![Deploy (GitHub Pages)](https://github.com/iamcucusa/untitled/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/iamcucusa/untitled/actions/workflows/deploy-pages.yml)
+
 Cross-framework design system used by React (demo app today) and ready for Angular/Vue.  
 Focus: **design tokens → Tailwind preset → small, framework-agnostic CSS layers**, with measurable
 **accessibility**. Now includes **Intl utilities** (`@untitled-ds/intl-core`) for locale
