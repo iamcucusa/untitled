@@ -1,0 +1,92 @@
+name: A11y and Performance
+
+on:
+  pull_request:
+    branches: [main, master]
+    paths:
+      - ".github/**"
+      - ".lighthouserc.json"
+      - "apps/web-react/**"
+      - "packages/**"
+  workflow_dispatch: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lighthouse:
+    name: Lighthouse (LHCI autorun)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build intl-core
+        run: pnpm -C packages/intl-core build
+
+      - name: Build web-react
+        run: pnpm -C apps/web-react build
+
+      # LHCI will start a temporary server, run audits, and store a local report
+      - name: Run LHCI autorun
+        run: pnpm dlx @lhci/cli@0.13.0 autorun --config=.lighthouserc.json
+
+      - name: Upload LHCI report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lhci-report
+          path: lhci-report
+          if-no-files-found: ignore
+
+  playwright_axe:
+    name: Playwright + axe checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps
+
+      - name: Build intl-core
+        run: pnpm -C packages/intl-core build
+
+      - name: Run axe tests
+        run: pnpm run a11y:axe
+
+      - name: Run reduced motion spec
+        run: pnpm run a11y:rm
