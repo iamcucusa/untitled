@@ -3,6 +3,37 @@ import { createRoot } from 'react-dom/client';
 import { createPortal } from 'react-dom';
 import './tailwind.css';
 
+import {
+  asLocale,
+  asCurrency,
+  formatCurrency,
+  formatDate,
+  formatRelativeTime,
+} from '@untitled-ds/intl-core';
+
+const negotiatedLocale = asLocale(navigator.language || 'en');
+const defaultCurrency = asCurrency('EUR');
+
+export function IntlSmoke() {
+  const formattedPrice = formatCurrency(1299.95, negotiatedLocale, defaultCurrency);
+  const formattedToday = formatDate(new Date(), negotiatedLocale, { dateStyle: 'long' });
+  const threeDaysAgo = formatRelativeTime(-3, 'day', negotiatedLocale);
+
+  return (
+    <div style={{ padding: 16 }}>
+      <div>
+        <strong>Price:</strong> {formattedPrice}
+      </div>
+      <div>
+        <strong>Today:</strong> {formattedToday}
+      </div>
+      <div>
+        <strong>Relative:</strong> {threeDaysAgo}
+      </div>
+    </div>
+  );
+}
+
 function DarkModeToggle() {
   const [dark, setDark] = useState<boolean>(() =>
     document.documentElement.classList.contains('dark'),
@@ -505,6 +536,7 @@ function App() {
           <FormChoicesDemo />
           {/* Overlay demo (accessible: focus trap, ESC, restore focus) */}
           <OverlayDemo />
+          <IntlSmoke />
         </main>
       </div>
     </>

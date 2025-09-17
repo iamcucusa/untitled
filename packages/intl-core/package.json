@@ -17,6 +17,7 @@
     "clean": "rimraf dist",
     "build": "tsc -p tsconfig.build.json",
     "rebuild": "pnpm run clean && pnpm run build",
+    "build:watch": "tsc -p tsconfig.build.json --watch",
     "typecheck": "tsc -p tsconfig.build.json --noEmit"
   },
   "devDependencies": {

@@ -1,5 +1,5 @@
 {
-  "name": "untitled-react",
+  "name": "@untitled-ds/react",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -12,6 +12,7 @@
     "@untitled-ds/presets": "workspace:*",
     "@untitled-ds/styles": "workspace:*",
     "@untitled-ds/tokens": "workspace:*",
+    "@untitled-ds/intl-core": "workspace:*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

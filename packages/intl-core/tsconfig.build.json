@@ -1,27 +1,22 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "ES2022",
     "lib": ["ES2022", "DOM", "ES2021.Intl"],
-    "moduleResolution": "Bundler",
-
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
-
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
-
     "declaration": true,
     "declarationMap": true,
     "emitDeclarationOnly": false,
     "sourceMap": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-
     "outDir": "dist",
     "rootDir": "src"
   },
-  "include": ["src"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["dist", "**/*.test.ts", "**/*.spec.ts"]
 }
