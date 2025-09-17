@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ main, master ]
+    paths:
+      - ".github/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "apps/**"
+      - "packages/**"
+  push:
+    branches: [ main, master ]
+    paths:
+      - ".github/**"
+      - "apps/**"
+      - "packages/**"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-typecheck:
+    name: Build libs → Typecheck → Build apps
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Build libraries that apps consume from dist (dist-only model)
+      - name: Build intl-core
+        run: pnpm -C packages/intl-core build
+
+      # Build tokens (explicit, even if postinstall handles it)
+      - name: Build tokens
+        run: pnpm -C packages/tokens build
+
+      # Typecheck app(s) – matrix-ready later
+      - name: Typecheck web-react
+        run: pnpm -C apps/web-react exec tsc --noEmit
+
+      # Build app(s)
+      - name: Build web-react
+        run: pnpm -C apps/web-react build
+
+      # Formatting check (keeps noise out of PRs)
+      - name: Prettier check
+        run: pnpm format:check
+
+      # Upload dist as artifact (handy for PR previews or manual testing)
+      - name: Upload web-react dist
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-react-dist
+          path: apps/web-react/dist
