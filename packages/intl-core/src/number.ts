@@ -13,10 +13,14 @@ type PercentOptions = {
   maximumFractionDigits?: number;
 };
 
+/**
+ * Formats a number using Intl.NumberFormat with memoization.
+ */
+
 type UnitOptions = {
   style: 'unit';
-  unit: Intl.NumberFormatUnit;
-  unitDisplay?: 'short' | 'long' | 'narrow';
+  unit: NonNullable<Intl.NumberFormatOptions['unit']>;
+  unitDisplay?: Intl.NumberFormatOptions['unitDisplay'];
   minimumFractionDigits?: number;
   maximumFractionDigits?: number;
 };
