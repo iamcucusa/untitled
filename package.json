@@ -30,7 +30,7 @@
     "postinstall": "pnpm -C packages/tokens build",
     "lint": "eslint apps/web-react/src --ext .ts,.tsx",
     "lint:fix": "eslint apps/web-react/src --ext .ts,.tsx --fix",
-    "prepare": "husky install",
+    "prepare": "git config core.hooksPath .husky",
     "rebuild": "pnpm run clean && pnpm run build",
     "typecheck": "pnpm -C apps/web-react exec tsc --noEmit"
   },
