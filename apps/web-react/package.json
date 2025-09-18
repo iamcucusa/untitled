@@ -6,9 +6,12 @@
   "scripts": {
     "build": "tsc -b && vite build",
     "dev": "vite",
+    "lingui:compile": "lingui compile",
+    "lingui:extract": "lingui extract --overwrite",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@untitled-ds/i18n-core": "workspace:*",
     "@untitled-ds/intl-core": "workspace:*",
     "@untitled-ds/presets": "workspace:*",
     "@untitled-ds/styles": "workspace:*",
