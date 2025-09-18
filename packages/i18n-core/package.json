@@ -18,9 +18,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "clean": "rimraf dist",
-    "lingui:build": "pnpm lingui:extract && pnpm lingui:compile",
-    "lingui:compile": "lingui compile",
-    "lingui:extract": "lingui extract --clean --overwrite --validate",
+    "lingui:compile": "rimraf locales/**/*.js && lingui compile",
     "rebuild": "pnpm run clean && pnpm run build",
     "typecheck": "tsc -p tsconfig.build.json --noEmit"
   },

@@ -27,6 +27,7 @@
     "dev:web": "pnpm --filter ./apps/web-react dev",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,css,scss,html,json,md,yml,yaml,graphql,vue}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,css,scss,html,json,md,yml,yaml,graphql,vue}\"",
+    "i18n:compile": "pnpm -C packages/i18n-core lingui:compile",
     "postinstall": "pnpm -C packages/tokens build",
     "lint": "eslint apps/web-react/src --ext .ts,.tsx",
     "lint:fix": "eslint apps/web-react/src --ext .ts,.tsx --fix",
