@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@untitled-ds/i18n-core": "workspace:*",
+    "@untitled-ds/i18n-react": "workspace:*",
     "@untitled-ds/intl-core": "workspace:*",
     "@untitled-ds/presets": "workspace:*",
     "@untitled-ds/styles": "workspace:*",

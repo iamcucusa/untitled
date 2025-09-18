@@ -68,6 +68,9 @@ importers:
       '@untitled-ds/i18n-core':
         specifier: workspace:*
         version: link:../../packages/i18n-core
+      '@untitled-ds/i18n-react':
+        specifier: workspace:*
+        version: link:../../packages/i18n-react
       '@untitled-ds/intl-core':
         specifier: workspace:*
         version: link:../../packages/intl-core
