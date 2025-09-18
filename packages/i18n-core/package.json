@@ -1,0 +1,35 @@
+{
+  "name": "@untitled-ds/i18n-core",
+  "version": "0.1.0",
+  "private": false,
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "clean": "rimraf dist",
+    "lingui:build": "pnpm lingui:extract && pnpm lingui:compile",
+    "lingui:compile": "lingui compile",
+    "lingui:extract": "lingui extract --clean --overwrite --validate",
+    "rebuild": "pnpm run clean && pnpm run build",
+    "typecheck": "tsc -p tsconfig.build.json --noEmit"
+  },
+  "dependencies": {
+    "@lingui/core": "^4.11.3"
+  },
+  "devDependencies": {
+    "@lingui/cli": "^4.11.3",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.6.3"
+  }
+}
