@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useSyncExternalStore } from 'react';
+import React, { createContext, useContext, useSyncExternalStore } from 'react';
 import type { I18n } from '@untitled-ds/i18n-core';
 
 /**
@@ -16,20 +16,23 @@ const I18nContext = createContext<I18n | null>(null);
 export function I18nProvider(props: { i18n: I18n; children: React.ReactNode }) {
   const { i18n, children } = props;
 
+  /**
+   * Subscribe to external store changes.
+   * Wrap the store's change event to call React's listener.
+   */
   const subscribe = (listener: () => void) => i18n.onChange(() => listener());
-  const getSnapshot = () => ({ locale: i18n.locale, currency: i18n.currency });
-
-  useSyncExternalStore(subscribe, getSnapshot, getSnapshot);
 
   /**
-   * Placeholder for right‑to‑left handling.
-   * A future enhancement can set document direction here based on the locale.
+   * IMPORTANT: getSnapshot MUST return a stable reference when the state
+   * hasn't changed. Use a primitive composite key instead of a new object.
    */
-  useEffect(() => {
-    /**
-     * example later: document.documentElement.dir = isRtl(i18n.locale) ? "rtl" : "ltr";
-     */
-  }, [i18n.locale]);
+  const getSnapshot = () => `${i18n.locale}|${i18n.currency}`;
+
+  // For SSR environments; same shape as getSnapshot
+  const getServerSnapshot = getSnapshot;
+
+  // We don't use the returned value directly; it only triggers re-renders.
+  useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   return <I18nContext.Provider value={i18n}>{children}</I18nContext.Provider>;
 }
