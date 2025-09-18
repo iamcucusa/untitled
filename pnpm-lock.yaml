@@ -131,6 +131,25 @@ importers:
         specifier: ^5.6.3
         version: 5.9.2
 
+  packages/i18n-react:
+    dependencies:
+      '@untitled-ds/i18n-core':
+        specifier: workspace:*
+        version: link:../i18n-core
+      react:
+        specifier: '>=18.0.0'
+        version: 18.3.1
+    devDependencies:
+      '@types/react':
+        specifier: ^18.2.66
+        version: 18.3.24
+      rimraf:
+        specifier: ^5.0.5
+        version: 5.0.10
+      typescript:
+        specifier: ^5.6.3
+        version: 5.9.2
+
   packages/intl-core:
     devDependencies:
       rimraf:

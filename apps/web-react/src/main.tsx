@@ -11,6 +11,47 @@ import {
   formatRelativeTime,
 } from '@untitled-ds/intl-core';
 
+import { I18n } from '@untitled-ds/i18n-core';
+import { defaultCatalogLoader } from '@untitled-ds/i18n-core';
+import { asLocaleCode, asCurrencyCode } from '@untitled-ds/i18n-core';
+
+const i18n = new I18n({
+  supportedLocales: ['en', 'es'],
+  defaultLocale: asLocaleCode('en'),
+  defaultCurrency: asCurrencyCode('EUR'),
+  loader: defaultCatalogLoader,
+});
+
+export function I18nSmoke() {
+  const [state, setState] = React.useState({ locale: 'en', currency: 'EUR' });
+
+  React.useEffect(() => {
+    const unsubscribe = i18n.onChange(setState);
+    i18n.setLocale(asLocaleCode(navigator.language.startsWith('es') ? 'es' : 'en'));
+    return unsubscribe;
+  }, []);
+
+  return (
+    <div style={{ padding: 16, border: '1px solid var(--border-color, #ddd)', borderRadius: 8 }}>
+      <div>
+        <strong>Locale:</strong> {state.locale}
+      </div>
+      <div>
+        <strong>Currency:</strong> {state.currency}
+      </div>
+      <div style={{ marginTop: 8 }}>
+        <strong>t("common.hello"):</strong> {i18n.t('common.hello')}
+      </div>
+      <button
+        style={{ marginTop: 12 }}
+        onClick={() => i18n.setLocale(asLocaleCode(state.locale === 'en' ? 'es' : 'en'))}
+      >
+        Toggle locale
+      </button>
+    </div>
+  );
+}
+
 const negotiatedLocale = asLocale(navigator.language || 'en');
 const defaultCurrency = asCurrency('EUR');
 
@@ -537,6 +578,7 @@ function App() {
           {/* Overlay demo (accessible: focus trap, ESC, restore focus) */}
           <OverlayDemo />
           <IntlSmoke />
+          <I18nSmoke />
         </main>
       </div>
     </>

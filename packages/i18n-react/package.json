@@ -1,0 +1,32 @@
+{
+  "name": "@untitled-ds/i18n-react",
+  "version": "0.1.0",
+  "private": false,
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "clean": "rimraf dist",
+    "typecheck": "tsc -p tsconfig.build.json --noEmit"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.66",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.6.3"
+  },
+  "peerDependencies": {
+    "@untitled-ds/i18n-core": "workspace:*",
+    "react": ">=18.0.0"
+  }
+}
