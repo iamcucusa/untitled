@@ -61,6 +61,12 @@ jobs:
       - name: Typecheck web-react
         run: pnpm -C apps/web-react exec tsc --noEmit
 
+      - name: Compile app catalogs (web-react)
+        run: pnpm -C apps/web-react lingui:compile
+
+      - name: Build i18n-react
+        run: pnpm -C packages/i18n-react build
+
       # Build app(s)
       - name: Build web-react
         run: pnpm -C apps/web-react build
