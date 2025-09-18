@@ -46,12 +46,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Build libraries that the app consumes from dist (dist-only model)
-      - name: Build intl-core
-        run: pnpm -C packages/intl-core build
+        # Build all libraries that apps import from dist
+      - name: Build libraries
+        run: pnpm build:libs
 
-      - name: Build tokens
-        run: pnpm -C packages/tokens build
+      # Compile app catalogs so runtime imports exist (ESM .js/.mjs)
+      - name: Compile app catalogs (web-react)
+        run: pnpm -C apps/web-react lingui:compile
+
+      # 🧪 (Optional but recommended) Typecheck the app explicitly
+      - name: Typecheck web-react
+        run: pnpm -C apps/web-react exec tsc --noEmit
 
       # Build the app with the correct base for GitHub Pages
       # VITE_BASE ensures assets resolve under /{repo}/ instead of /

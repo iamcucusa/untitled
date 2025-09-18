@@ -29,7 +29,10 @@ export function I18nSmoke() {
         <strong>Currency:</strong> {state.currency}
       </div>
       <div style={{ marginTop: 8 }}>
-        <strong>t("common.hello"):</strong> {i18n.t('common.hello', undefined, 'common')}
+        <strong>
+          <code>t(&quot;common.hello&quot;)</code>:
+        </strong>
+        {i18n.t('common.hello', undefined, 'common')}
       </div>
       <button
         style={{ marginTop: 12 }}
