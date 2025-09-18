@@ -65,6 +65,9 @@ importers:
 
   apps/web-react:
     dependencies:
+      '@untitled-ds/i18n-core':
+        specifier: workspace:*
+        version: link:../../packages/i18n-core
       '@untitled-ds/intl-core':
         specifier: workspace:*
         version: link:../../packages/intl-core
@@ -84,6 +87,9 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
     devDependencies:
+      '@lingui/cli':
+        specifier: ^4.11.3
+        version: 4.14.1(typescript@5.9.2)
       '@types/react':
         specifier: ^18.2.66
         version: 18.3.24

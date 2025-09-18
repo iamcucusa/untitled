@@ -10,7 +10,7 @@ module.exports = {
   ],
   format: 'po',
   /**
-   * keep runtime small; compile to minimal JS
+   * ESM export: `export const messages = {...}`
    */
-  compileNamespace: 'cjs',
+  compileNamespace: 'es',
 };

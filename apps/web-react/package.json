@@ -7,7 +7,6 @@
     "build": "tsc -b && vite build",
     "dev": "vite",
     "lingui:compile": "lingui compile",
-    "lingui:extract": "lingui extract --overwrite",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -20,6 +19,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@lingui/cli": "^4.11.3",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^5.0.2",
