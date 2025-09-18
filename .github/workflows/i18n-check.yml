@@ -1,0 +1,53 @@
+name: i18n Check
+
+on:
+  pull_request:
+    branches: [main, master]
+    paths:
+      - "packages/i18n-core/**"
+      - ".github/workflows/i18n-check.yml"
+  push:
+    branches: [main, master]
+    paths:
+      - "packages/i18n-core/**"
+      - ".github/workflows/i18n-check.yml"
+  workflow_dispatch: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  i18n:
+    name: Extract, validate, compile catalogs
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Compile catalogs(core)
+        run: pnpm -C packages/i18n-core lingui:compile
+
+      - name: Upload compiled catalogs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: i18n-compiled-catalogs
+          path: packages/i18n-core/locales
+          if-no-files-found: warn
