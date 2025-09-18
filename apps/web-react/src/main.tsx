@@ -1,41 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { createRoot } from 'react-dom/client';
+import { createRoot, Root } from 'react-dom/client';
 import { createPortal } from 'react-dom';
 import './tailwind.css';
-
-import {
-  asCurrency,
-  asLocale,
-  formatCurrency,
-  formatDate,
-  formatRelativeTime,
-} from '@untitled-ds/intl-core';
 import { createAppI18n } from './i18n/i18n';
 import { I18nProvider } from '@untitled-ds/i18n-react';
+import { I18nSmoke } from './i18n/I18nSmoke';
 
+/**
+ * Single, shared I18n instance for the app.
+ */
 const i18n = createAppI18n();
 
-const negotiatedLocale = asLocale(navigator.language || 'en');
-const defaultCurrency = asCurrency('EUR');
-
-export function IntlSmoke() {
-  const formattedPrice = formatCurrency(1299.95, negotiatedLocale, defaultCurrency);
-  const formattedToday = formatDate(new Date(), negotiatedLocale, { dateStyle: 'long' });
-  const threeDaysAgo = formatRelativeTime(-3, 'day', negotiatedLocale);
-
-  return (
-    <div style={{ padding: 16 }}>
-      <div>
-        <strong>Price:</strong> {formattedPrice}
-      </div>
-      <div>
-        <strong>Today:</strong> {formattedToday}
-      </div>
-      <div>
-        <strong>Relative:</strong> {threeDaysAgo}
-      </div>
-    </div>
-  );
+/**
+ * Create or reuse a single React root. This prevents calling createRoot()
+ * multiple times on the same container during HMR, which causes:
+ * - "You are calling createRoot() on a container that has already been passed…"
+ * - NotFoundError: removeChild (double mount/unmount)
+ */
+const container = document.getElementById('root') as HTMLElement & { __root?: Root };
+let root = container.__root;
+if (!root) {
+  root = createRoot(container);
+  container.__root = root;
 }
 
 function DarkModeToggle() {
@@ -108,13 +94,13 @@ function OverlayDemo() {
       const nodes = dialogRef.current.querySelectorAll<HTMLElement>(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
       );
-      const focusables = Array.from(nodes).filter(
+      const focusable = Array.from(nodes).filter(
         (el) => !el.hasAttribute('disabled') && el.getAttribute('aria-hidden') !== 'true',
       );
-      if (focusables.length === 0) return;
+      if (focusable.length === 0) return;
 
-      const firstEl = focusables[0];
-      const lastEl = focusables[focusables.length - 1];
+      const firstEl = focusable[0];
+      const lastEl = focusable[focusable.length - 1];
       const active = document.activeElement as HTMLElement | null;
 
       if (e.shiftKey && active === firstEl) {
@@ -128,7 +114,6 @@ function OverlayDemo() {
 
     document.addEventListener('keydown', onKeyDown);
 
-    // capture current trigger for cleanup (fixes ref warning)
     const trigger = triggerRef.current;
 
     return () => {
@@ -351,7 +336,6 @@ function FormChoicesDemo() {
     );
     if (interestsChecked.length === 0) next.interests = 'Select at least one interest.';
 
-    // Reflect validity visually & for AT
     const contactFs = form.querySelector<HTMLFieldSetElement>('#contact-group');
     const interestsFs = form.querySelector<HTMLFieldSetElement>('#interests-group');
 
@@ -375,9 +359,8 @@ function FormChoicesDemo() {
     e.preventDefault();
     const form = e.currentTarget;
     if (validate(form)) {
-      alert('Choices submitted ✔'); // replace with real action later
+      alert('Choices submitted ✔');
       form.reset();
-      // clear invalid states
       form
         .querySelectorAll('fieldset[data-invalid="true"]')
         .forEach((fs) => fs.setAttribute('data-invalid', 'false'));
@@ -470,7 +453,7 @@ function FormChoicesDemo() {
 function App() {
   return (
     <>
-      {/* Skip link first so keyboard users can jump straight to content */}
+      {/* Skip the link first so keyboard users can jump straight to content */}
       <a className="skip-link" href="#main">
         Skip to content
       </a>
@@ -540,17 +523,30 @@ function App() {
           <FormChoicesDemo />
           {/* Overlay demo (accessible: focus trap, ESC, restore focus) */}
           <OverlayDemo />
-          <IntlSmoke />
         </main>
       </div>
     </>
   );
 }
 
-createRoot(document.getElementById('root')!).render(
+/**
+ * Render once through the shared root.
+ */
+root.render(
   <React.StrictMode>
     <I18nProvider i18n={i18n}>
       <App />
+      <I18nSmoke />
     </I18nProvider>
   </React.StrictMode>,
 );
+
+/**
+ * HMR hygiene: unmount the root on dispose so the next eval can recreate it cleanly.
+ */
+if (import.meta.hot) {
+  import.meta.hot.dispose(() => {
+    root?.unmount();
+    container.__root = undefined;
+  });
+}

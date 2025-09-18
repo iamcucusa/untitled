@@ -18,17 +18,17 @@ type CatalogModule =
  */
 function extractMessages(mod: unknown): Messages | null {
   if (mod && typeof mod === 'object') {
-    const withNamed = mod as { messages?: unknown };
-    if (withNamed.messages && typeof withNamed.messages === 'object') {
-      return withNamed.messages as Messages;
+    const named = mod as { messages?: unknown };
+    if (named.messages && typeof named.messages === 'object') {
+      return named.messages as Messages;
     }
-    const withDefault = mod as { default?: unknown };
-    if (withDefault.default && typeof withDefault.default === 'object') {
-      const def = withDefault.default as { messages?: unknown };
-      if (def.messages && typeof def.messages === 'object') {
-        return def.messages as Messages;
+    const defWrap = mod as { default?: unknown };
+    if (defWrap.default && typeof defWrap.default === 'object') {
+      const defObj = defWrap.default as { messages?: unknown };
+      if (defObj.messages && typeof defObj.messages === 'object') {
+        return defObj.messages as Messages;
       }
-      return withDefault.default as Messages;
+      return defWrap.default as Messages;
     }
   }
   return null;
@@ -54,21 +54,26 @@ function extractMessages(mod: unknown): Messages | null {
  */
 export function createViteCatalogLoader(basePath = '/src/locales'): CatalogLoader {
   return async (locale: string, namespace: string): Promise<Messages> => {
-    try {
-      const modulePath = `${basePath}/${locale}/${namespace}.js`;
-      /**
-       * Vite will treat this as a source path import (no URL prefix needed).
-       * `@vite-ignore` keeps the path dynamic for per-locale/namespace code splitting.
-       */
-      const mod: unknown = await import(/* @vite-ignore */ modulePath);
-      const msgs = extractMessages(mod);
-      return msgs ?? {};
-    } catch {
-      /**
-       * Graceful fallback: return an empty catalog so the UI keeps working
-       * even if a locale/namespace was not compiled yet during development.
-       */
-      return {};
+    const candidates = [
+      `${basePath}/${locale}/${namespace}.mjs`,
+      `${basePath}/${locale}/${namespace}.js`,
+    ];
+
+    for (const modulePath of candidates) {
+      try {
+        const mod: unknown = await import(/* @vite-ignore */ modulePath);
+        const messages = extractMessages(mod);
+        if (messages) return messages;
+      } catch {
+        /**
+         * try next candidate
+         */
+      }
     }
+
+    /**
+     * Graceful fallback so UI stays stable if a catalog is missing in dev
+     */
+    return {};
   };
 }

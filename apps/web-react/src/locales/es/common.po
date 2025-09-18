@@ -3,5 +3,6 @@ msgstr ""
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. js-lingui-explicit-id
 msgid "common.hello"
 msgstr "Hola desde la app"

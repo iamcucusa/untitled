@@ -1,17 +1,28 @@
 /** @type {import('@lingui/conf').LinguiConfig} */
+const { formatter } = require('@lingui/format-po');
+
 module.exports = {
   locales: ['en', 'es'],
   sourceLocale: 'en',
-  /**
-   * Compile per-namespace to ESM so the browser can import them.
-   * Files will live under: src/locales/{locale}/{name}.js
-   */
   catalogs: [
     {
-      path: 'src/locales/{locale}/{name}',
+      /**
+       *  Pin the basename to "common" for now
+       */
+      path: 'src/locales/{locale}/common',
       include: ['src'],
     },
   ],
-  format: 'po',
+  /**
+   *  Keep semantic IDs instead of hashing
+   */
+  format: formatter({
+    explicitIdAsDefault: true,
+    origins: false,
+    lineNumbers: false,
+  }),
+  /**
+   *  ESM output (your loader already supports .js/.mjs)
+   */
   compileNamespace: 'es',
 };

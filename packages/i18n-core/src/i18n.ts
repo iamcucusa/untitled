@@ -17,7 +17,14 @@ export class I18n {
   private currentLocale: LocaleCode;
   private currentCurrency: CurrencyCode;
   private readonly loader: CatalogLoader;
-  private readonly subscribers = new Set<(state: { locale: string; currency: string }) => void>();
+
+  /**
+   * Subscriptions notified whenever locale or currency changes.
+   * NOTE: uses branded types so consumers can keep their state strictly typed.
+   */
+  private readonly subscribers = new Set<
+    (state: { locale: LocaleCode; currency: CurrencyCode }) => void
+  >();
 
   constructor(options: {
     supportedLocales: readonly string[];
@@ -33,6 +40,9 @@ export class I18n {
     this.currentCurrency = options.initialCurrency ?? options.defaultCurrency;
     this.loader = options.loader ?? (async () => ({}));
 
+    /**
+     * Activate Lingui with an empty catalog so t() is safe before first load.
+     */
     linguiSingleton.load(this.currentLocale, {} as LinguiMessages);
     linguiSingleton.activate(this.currentLocale);
   }
@@ -75,11 +85,15 @@ export class I18n {
     return linguiSingleton._(id, values);
   }
 
-  onChange(listener: (state: { locale: string; currency: string }) => void): () => void {
+  /**
+   * Subscribe to changes with branded types.
+   *
+   * @returns Unsubscribe function.
+   */
+  onChange(listener: (state: { locale: LocaleCode; currency: CurrencyCode }) => void): () => void {
     this.subscribers.add(listener);
     return () => this.subscribers.delete(listener);
   }
-
   private notify(): void {
     const snapshot = { locale: this.currentLocale, currency: this.currentCurrency };
     for (const listener of this.subscribers) {
