@@ -16,19 +16,32 @@ import type { CatalogLoader, Messages, Namespace } from './types';
  * You can later extend this to:
  *   `locales/{locale}/{namespace}.js`
  *
+ * If the import fails, an empty catalog is returned to keep the app stable.
+ *
  * @param locale - The target locale (e.g. 'en', 'es')
  * @param _ - Reserved namespace argument for future catalog splitting
  * @returns Parsed messages object for Lingui activation
+ *
  */
 export const defaultCatalogLoader: CatalogLoader = async (
   locale: string,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _: Namespace,
 ): Promise<Messages> => {
-  /**
-   * For Step 2, we keep a single "messages" file per locale.
-   *  Lingui compile generates .js files exporting "messages".
-   */
-  const catalog = await import(/* @vite-ignore */ `../locales/${locale}/messages.js`);
-  return catalog.messages as Messages;
+  try {
+    /**
+     *  Vite/ESM build: the compiled file should export `messages` as a named export.
+     */
+    const mod = await import(/* @vite-ignore */ `../locales/${locale}/messages.js`);
+    /**
+     * Support both named and default exports just in case.
+     */
+    const exported =
+      (mod as any).messages ?? (mod as any).default?.messages ?? (mod as any).default ?? {};
+    return exported as Messages;
+  } catch {
+    /**
+     * Graceful fallback while catalogs are being added or during dev.
+     */
+    return {};
+  }
 };
