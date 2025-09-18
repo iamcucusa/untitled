@@ -46,23 +46,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Build libraries that apps consume from dist (dist-only model)
-      - name: Build intl-core
-        run: pnpm -C packages/intl-core build
+      # Build all libraries that apps import from dist
+      - name: Build libraries
+        run: pnpm build:libs
 
-      - name: Build i18n-core
-        run: pnpm -C packages/i18n-core build
-
-      # Build tokens (explicit, even if postinstall handles it)
-      - name: Build tokens
-        run: pnpm -C packages/tokens build
+      # Compile app catalogs so runtime imports exist (ESM .js/.mjs)
+      - name: Compile app catalogs (web-react)
+        run: pnpm -C apps/web-react lingui:compile
 
       # Typecheck app(s) – matrix-ready later
       - name: Typecheck web-react
         run: pnpm -C apps/web-react exec tsc --noEmit
-
-      - name: Compile app catalogs (web-react)
-        run: pnpm -C apps/web-react lingui:compile
 
       - name: Build i18n-react
         run: pnpm -C packages/i18n-react build
