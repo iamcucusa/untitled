@@ -50,6 +50,9 @@ jobs:
       - name: Build intl-core
         run: pnpm -C packages/intl-core build
 
+      - name: Build i18n-core
+        run: pnpm -C packages/i18n-core build
+
       # Build tokens (explicit, even if postinstall handles it)
       - name: Build tokens
         run: pnpm -C packages/tokens build
