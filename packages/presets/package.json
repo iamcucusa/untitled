@@ -1,13 +1,34 @@
 {
   "name": "@untitled-ds/presets",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "type": "module",
   "exports": {
-    "./tailwind-preset.cjs": "./tailwind-preset.cjs"
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./tailwind-preset.cjs": {
+      "types": "./tailwind-preset.cjs.d.ts",
+      "default": "./tailwind-preset.cjs"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "tailwind-preset.cjs",
+    "tailwind-preset.cjs.d.ts",
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
     "@untitled-ds/styles": "workspace:*",
     "@untitled-ds/tokens": "workspace:*"
+  },
+  "peerDependencies": {
+    "tailwindcss": ">=3.0.0"
   }
 }
