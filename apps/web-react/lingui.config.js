@@ -4,12 +4,13 @@ const { formatter } = require('@lingui/format-po');
 module.exports = {
   locales: ['en', 'es'],
   sourceLocale: 'en',
+  /**
+   * Extract/compile catalogs per namespace:
+   *   src/locales/{locale}/{name}.po  →  {name}.(js|mjs)
+   */
   catalogs: [
     {
-      /**
-       *  Pin the basename to "common" for now
-       */
-      path: 'src/locales/{locale}/common',
+      path: 'src/locales/{locale}/{name}',
       include: ['src'],
     },
   ],
