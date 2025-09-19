@@ -91,8 +91,14 @@ importers:
         version: 18.3.1(react@18.3.1)
     devDependencies:
       '@lingui/cli':
-        specifier: ^4.11.3
+        specifier: ^4.14.1
         version: 4.14.1(typescript@5.9.2)
+      '@lingui/core':
+        specifier: ^4.11.3
+        version: 4.14.1
+      '@lingui/format-po':
+        specifier: ^5.5.0
+        version: 5.5.0(typescript@5.9.2)
       '@lingui/macro':
         specifier: ^5.5.0
         version: 5.5.0(@lingui/babel-plugin-lingui-macro@5.5.0(babel-plugin-macros@3.1.0)(typescript@5.9.2))(babel-plugin-macros@3.1.0)(react@18.3.1)
@@ -114,6 +120,9 @@ importers:
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.21(postcss@8.5.6)
+      babel-plugin-macros:
+        specifier: ^3.1.0
+        version: 3.1.0
       postcss:
         specifier: ^8.4.41
         version: 8.5.6
