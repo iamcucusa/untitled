@@ -5,13 +5,16 @@ module.exports = {
   locales: ['en', 'es'],
   sourceLocale: 'en',
   /**
-   * Extract/compile catalogs per namespace:
-   *   src/locales/{locale}/{name}.po  →  {name}.(js|mjs)
+   * Use {name} captured from include globs.
+   * - Any t()/Trans in src/routes/{name}/** → {name}.po
+   * - Any t()/Trans in src/i18n/{name}/** → {name}.po
+   * Example: src/routes/pricing/PricingPage.tsx → pricing.po
+   *          src/i18n/common/strings.ts → common.po
    */
   catalogs: [
     {
-      path: 'src/locales/{locale}/common',
-      include: ['src'],
+      path: 'src/locales/{locale}/{name}',
+      include: ['src/routes/{name}/**/*.{ts,tsx}', 'src/i18n/{name}/**/*.{ts,tsx}'],
     },
   ],
   /**
@@ -23,7 +26,7 @@ module.exports = {
     lineNumbers: false,
   }),
   /**
-   *  ESM output (your loader already supports .js/.mjs)
+   *  ESM output (the loader supports .js/.mjs)
    */
   compileNamespace: 'es',
 };
