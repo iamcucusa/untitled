@@ -5,6 +5,7 @@ import './tailwind.css';
 import { createAppI18n } from './i18n/i18n';
 import { I18nProvider } from '@untitled-ds/i18n-react';
 import { I18nSmoke } from './i18n/I18nSmoke';
+import { MacroSmoke } from './i18n/MacroSmoke';
 
 /**
  * Single, shared I18n instance for the app.
@@ -536,7 +537,10 @@ root.render(
   <React.StrictMode>
     <I18nProvider i18n={i18n}>
       <App />
-      <I18nSmoke />
+      <hr />
+      <h2 className="m-6 text-start text-xl font-semibold">I18n Demos</h2>
+
+      <MacroSmoke />
     </I18nProvider>
   </React.StrictMode>,
 );
