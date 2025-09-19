@@ -12,7 +12,7 @@
     "a11y:rm": "playwright test -c apps/web-react/tests/playwright.config.ts apps/web-react/tests/a11y/reduced-motion.spec.ts",
     "build": "pnpm -r run build",
     "build:apps": "pnpm -r --filter ./apps/web-react run build",
-    "build:libs": "pnpm -r --filter \"./packages/*\" run build",
+    "build:libs": "pnpm -r --filter \"./packages/*\" --if-present run build",
     "check": "pnpm run check:install && pnpm run check:tokens && pnpm run check:build && pnpm run check:type",
     "check:build": "pnpm -C apps/web-react build",
     "check:install": "pnpm install",
@@ -34,7 +34,7 @@
     "prepare": "git config core.hooksPath .husky",
     "rebuild": "pnpm run clean && pnpm run build",
     "typecheck": "pnpm -C apps/web-react exec tsc --noEmit",
-    "watch:libs": "pnpm -r --filter \"./packages/*\" run build:watch"
+    "watch:libs": "pnpm -r --filter \"./packages/*\" --if-present run build:watch"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,css,scss,html,json,md,yml,yaml,graphql,vue}": "prettier --write"

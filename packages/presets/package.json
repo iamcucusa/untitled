@@ -22,7 +22,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.build.json"
+    "build": "echo \"@untitled-ds/presets: nothing to build\""
   },
   "dependencies": {
     "@untitled-ds/styles": "workspace:*",
