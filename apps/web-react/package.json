@@ -23,8 +23,8 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@lingui/cli": "^4.14.1",
-    "@lingui/core": "^4.11.3",
+    "@lingui/cli": "^5.5.0",
+    "@lingui/core": "^5.5.0",
     "@lingui/format-po": "^5.5.0",
     "@lingui/macro": "^5.5.0",
     "@lingui/react": "^5.5.0",
@@ -38,5 +38,10 @@
     "tailwindcss": "^3.4.10",
     "typescript": "^5.5.4",
     "vite": "^5.4.2"
+  },
+  "babelMacros": {
+    "lingui": {
+      "corePackage": "@lingui/core"
+    }
   }
 }

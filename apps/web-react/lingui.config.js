@@ -10,7 +10,7 @@ module.exports = {
    */
   catalogs: [
     {
-      path: 'src/locales/{locale}/{name}',
+      path: 'src/locales/{locale}/common',
       include: ['src'],
     },
   ],

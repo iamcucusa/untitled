@@ -91,11 +91,11 @@ importers:
         version: 18.3.1(react@18.3.1)
     devDependencies:
       '@lingui/cli':
-        specifier: ^4.14.1
-        version: 4.14.1(typescript@5.9.2)
+        specifier: ^5.5.0
+        version: 5.5.0(babel-plugin-macros@3.1.0)(typescript@5.9.2)
       '@lingui/core':
-        specifier: ^4.11.3
-        version: 4.14.1
+        specifier: ^5.5.0
+        version: 5.5.0(@lingui/babel-plugin-lingui-macro@5.5.0(babel-plugin-macros@3.1.0)(typescript@5.9.2))(babel-plugin-macros@3.1.0)
       '@lingui/format-po':
         specifier: ^5.5.0
         version: 5.5.0(typescript@5.9.2)
