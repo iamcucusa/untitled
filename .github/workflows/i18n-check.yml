@@ -4,13 +4,11 @@ on:
   pull_request:
     branches: [main, master]
     paths:
-      - "packages/i18n-core/**"
       - "apps/web-react/**"
       - ".github/workflows/i18n-check.yml"
   push:
     branches: [main, master]
     paths:
-      - "packages/i18n-core/**"
       - "apps/web-react/**"
       - ".github/workflows/i18n-check.yml"
   workflow_dispatch: {}
@@ -21,7 +19,7 @@ concurrency:
 
 jobs:
   i18n:
-    name: Extract, validate, compile catalogs
+    name: Extract, validate, compile web-react catalogs
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -43,12 +41,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Extract catalogs (core)
-        run: pnpm -C packages/i18n-core lingui:extract
-
-      - name: Compile catalogs (core)
-        run: pnpm -C packages/i18n-core lingui:compile
-
       - name: Extract catalogs (web-react)
         run: pnpm -C apps/web-react lingui:extract
 
@@ -60,7 +52,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: i18n-compiled-catalogs
-          path: |
-            packages/i18n-core/locales
-            apps/web-react/src/locales
+          path: apps/web-react/src/locales
           if-no-files-found: warn
