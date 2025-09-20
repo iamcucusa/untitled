@@ -5,11 +5,13 @@ on:
     branches: [main, master]
     paths:
       - "packages/i18n-core/**"
+      - "apps/web-react/**"
       - ".github/workflows/i18n-check.yml"
   push:
     branches: [main, master]
     paths:
       - "packages/i18n-core/**"
+      - "apps/web-react/**"
       - ".github/workflows/i18n-check.yml"
   workflow_dispatch: {}
 
@@ -41,13 +43,24 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Compile catalogs(core)
+      - name: Extract catalogs (core)
+        run: pnpm -C packages/i18n-core lingui:extract
+
+      - name: Compile catalogs (core)
         run: pnpm -C packages/i18n-core lingui:compile
+
+      - name: Extract catalogs (web-react)
+        run: pnpm -C apps/web-react lingui:extract
+
+      - name: Compile catalogs (web-react)
+        run: pnpm -C apps/web-react lingui:compile
 
       - name: Upload compiled catalogs
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: i18n-compiled-catalogs
-          path: packages/i18n-core/locales
+          path: |
+            packages/i18n-core/locales
+            apps/web-react/src/locales
           if-no-files-found: warn

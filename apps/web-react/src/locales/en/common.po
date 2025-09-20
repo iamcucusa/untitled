@@ -13,30 +13,6 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-msgid "Status"
-msgstr "Status"
-
-msgid "Current Locale:"
-msgstr "Current Locale:"
-
-msgid "Current Section:"
-msgstr "Current Section:"
-
-msgid "Messages Loaded:"
-msgstr "Messages Loaded:"
-
-msgid "Yes"
-msgstr "Yes"
-
-msgid "Loading State:"
-msgstr "Loading State:"
-
-msgid "Ready"
-msgstr "Ready"
-
-msgid "Loading messages..."
-msgstr "Loading messages..."
-
 msgid "Welcome to our application"
 msgstr "Welcome to our application"
 
@@ -148,5 +124,26 @@ msgstr "Free trial"
 msgid "30-day money back guarantee"
 msgstr "30-day money back guarantee"
 
-#~ msgid "common.hello"
-#~ msgstr "Hello"
+msgid "Status"
+msgstr "Status"
+
+msgid "Current Locale:"
+msgstr "Current Locale:"
+
+msgid "Current Section:"
+msgstr "Current Section:"
+
+msgid "Messages Loaded:"
+msgstr "Messages Loaded:"
+
+msgid "Yes"
+msgstr "Yes"
+
+msgid "Loading State:"
+msgstr "Loading State:"
+
+msgid "Ready"
+msgstr "Ready"
+
+msgid "Loading messages..."
+msgstr "Loading messages..."

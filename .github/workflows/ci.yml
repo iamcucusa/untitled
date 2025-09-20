@@ -50,7 +50,10 @@ jobs:
       - name: Build libraries
         run: pnpm build:libs
 
-      # Compile app catalogs so runtime imports exist (ESM .js/.mjs)
+      # Extract and compile app catalogs so runtime imports exist (ESM .js/.mjs)
+      - name: Extract app catalogs (web-react)
+        run: pnpm -C apps/web-react lingui:extract
+
       - name: Compile app catalogs (web-react)
         run: pnpm -C apps/web-react lingui:compile
 

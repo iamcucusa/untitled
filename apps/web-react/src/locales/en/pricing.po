@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 
 msgid "pricing.title"
-msgstr "Prices"
+msgstr "pricing.title"
 
 msgid "pricing.cta"
-msgstr "Subscribe"
+msgstr "pricing.cta"

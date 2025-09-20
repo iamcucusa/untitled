@@ -147,6 +147,3 @@ msgstr "Listo"
 
 msgid "Loading messages..."
 msgstr "Cargando mensajes..."
-
-#~ msgid "common.hello"
-#~ msgstr "Hola"
