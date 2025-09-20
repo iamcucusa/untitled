@@ -1,0 +1,81 @@
+msgid ""
+msgstr ""
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Content-Type: \n"
+"Content-Transfer-Encoding: \n"
+
+msgid "pricing.title"
+msgstr "Precios"
+
+msgid "pricing.cta"
+msgstr "Suscribirse"
+
+#~ msgid "pricing.get_started"
+#~ msgstr "Comenzar"
+
+#~ msgid "pricing.subscribe"
+#~ msgstr "Suscribirse"
+
+#~ msgid "pricing.choose_plan"
+#~ msgstr "Elige tu plan"
+
+#~ msgid "pricing.monthly"
+#~ msgstr "Mensual"
+
+#~ msgid "pricing.yearly"
+#~ msgstr "Anual"
+
+#~ msgid "pricing.free_trial"
+#~ msgstr "Prueba gratuita"
+
+#~ msgid "pricing.most_popular"
+#~ msgstr "Más popular"
+
+#~ msgid "pricing.basic_plan"
+#~ msgstr "Plan Básico"
+
+#~ msgid "pricing.pro_plan"
+#~ msgstr "Plan Pro"
+
+#~ msgid "pricing.enterprise_plan"
+#~ msgstr "Plan Empresarial"
+
+#~ msgid "pricing.unlimited_projects"
+#~ msgstr "Proyectos ilimitados"
+
+#~ msgid "pricing.advanced_analytics"
+#~ msgstr "Análisis avanzado"
+
+#~ msgid "pricing.priority_support"
+#~ msgstr "Soporte prioritario"
+
+#~ msgid "pricing.custom_integrations"
+#~ msgstr "Integraciones personalizadas"
+
+#~ msgid "pricing.team_collaboration"
+#~ msgstr "Colaboración en equipo"
+
+#~ msgid "pricing.per_month"
+#~ msgstr "por mes"
+
+#~ msgid "pricing.per_year"
+#~ msgstr "por año"
+
+#~ msgid "pricing.save_20"
+#~ msgstr "Ahorra 20%"
+
+#~ msgid "pricing.cancel_anytime"
+#~ msgstr "Cancela en cualquier momento"
+
+#~ msgid "pricing.no_setup_fees"
+#~ msgstr "Sin tarifas de configuración"
+
+#~ msgid "pricing.money_back_guarantee"
+#~ msgstr "Garantía de devolución de 30 días"

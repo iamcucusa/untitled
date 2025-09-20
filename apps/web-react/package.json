@@ -23,6 +23,9 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.27.1",
+    "@babel/preset-typescript": "^7.27.1",
+    "@lingui/babel-plugin-extract-messages": "^5.5.0",
     "@lingui/cli": "^5.5.0",
     "@lingui/core": "^5.5.0",
     "@lingui/format-po": "^5.5.0",

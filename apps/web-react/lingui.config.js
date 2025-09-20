@@ -1,32 +1,62 @@
-/** @type {import('@lingui/conf').LinguiConfig} */
-const { formatter } = require('@lingui/format-po');
+/**
+ * LinguiJS Configuration for I18n Demo Application
+ *
+ * This configuration defines how LinguiJS extracts, compiles, and manages
+ * translations for the demo application. It supports English and Spanish
+ * locales with namespace-based message organization.
+ *
+ * @fileoverview LinguiJS configuration for internationalization
+ * @author Frontend Engineering Team
+ * @version 1.0.0
+ */
 
-module.exports = {
+/** @type {import('@lingui/conf').LinguiConfig} */
+import { formatter } from '@lingui/format-po';
+
+export default {
+  /**
+   * Supported locales for the application
+   * English (en) is the source locale, Spanish (es) is the target locale
+   */
   locales: ['en', 'es'],
   sourceLocale: 'en',
+
   /**
-   * Use {name} captured from include globs.
-   * - Any t()/Trans in src/routes/{name}/** → {name}.po
-   * - Any t()/Trans in src/i18n/{name}/** → {name}.po
-   * Example: src/routes/pricing/PricingPage.tsx → pricing.po
-   *          src/i18n/common/strings.ts → common.po
+   * Message catalogs configuration
+   * Each catalog represents a namespace with its own translation files
    */
   catalogs: [
     {
-      path: 'src/locales/{locale}/{name}',
-      include: ['src/routes/{name}/**/*.{ts,tsx}', 'src/i18n/{name}/**/*.{ts,tsx}'],
+      path: 'src/locales/{locale}/common',
+      include: ['src/i18n/**/*'],
+    },
+    {
+      path: 'src/locales/{locale}/pricing',
+      include: ['src/routes/pricing/**/*'],
     },
   ],
+
   /**
-   *  Keep semantic IDs instead of hashing
+   * Message formatting configuration
+   * Uses explicit IDs for better maintainability and debugging
    */
   format: formatter({
     explicitIdAsDefault: true,
     origins: false,
     lineNumbers: false,
   }),
+
   /**
-   *  ESM output (the loader supports .js/.mjs)
+   * Compilation settings
+   * Generates ES modules for better tree-shaking and performance
    */
   compileNamespace: 'es',
+
+  /**
+   * Fallback locale configuration
+   * Ensures English is used when translations are missing
+   */
+  fallbackLocales: {
+    default: 'en',
+  },
 };

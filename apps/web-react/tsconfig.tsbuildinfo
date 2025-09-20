@@ -1,1 +1,1 @@
-{"root":["./src/main.tsx","./src/i18n/i18nsmoke.tsx","./src/i18n/i18n.ts","./src/i18n/loader.ts"],"version":"5.9.2"}
+{"root":["./src/main.tsx","./src/i18n/i18ndemo.tsx","./src/i18n/i18n.ts","./src/i18n/loader.ts","./src/i18n/common/commonstrings.ts","./src/routes/pricing/pricingdemo.tsx","./src/routes/pricing/ids.ts"],"version":"5.9.2"}

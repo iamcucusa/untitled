@@ -1,15 +1,152 @@
 msgid ""
 msgstr ""
+"POT-Creation-Date: 2025-09-20 21:11+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
 "Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Content-Type: \n"
-"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
-msgid "common.hello"
-msgstr "Hola desde la app"
+msgid "Welcome to our application"
+msgstr "Bienvenido a nuestra aplicación"
+
+msgid "Loading..."
+msgstr "Cargando..."
+
+msgid "Home"
+msgstr "Inicio"
+
+msgid "Hello"
+msgstr "Hola"
+
+msgid "Thank you"
+msgstr "Gracias"
+
+msgid "Please"
+msgstr "Por favor"
+
+msgid "Click here"
+msgstr "Haz clic aquí"
+
+msgid "Settings"
+msgstr "Configuración"
+
+msgid "Create"
+msgstr "Crear"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Save"
+msgstr "Guardar"
+
+msgid "Delete"
+msgstr "Eliminar"
+
+msgid "Information"
+msgstr "Información"
+
+msgid "Today"
+msgstr "Hoy"
+
+msgid "This week"
+msgstr "Esta semana"
+
+msgid "Yesterday"
+msgstr "Ayer"
+
+msgid "Last week"
+msgstr "La semana pasada"
+
+msgid "Tomorrow"
+msgstr "Mañana"
+
+msgid "Next week"
+msgstr "La próxima semana"
+
+msgid "Pricing"
+msgstr "Precios"
+
+msgid "Choose your plan"
+msgstr "Elige tu plan"
+
+msgid "Basic Plan"
+msgstr "Plan Básico"
+
+msgid "per month"
+msgstr "por mes"
+
+msgid "Unlimited projects"
+msgstr "Proyectos ilimitados"
+
+msgid "Basic analytics"
+msgstr "Análisis básico"
+
+msgid "Get Started"
+msgstr "Comenzar"
+
+msgid "Most popular"
+msgstr "Más popular"
+
+msgid "Pro Plan"
+msgstr "Plan Pro"
+
+msgid "Advanced analytics"
+msgstr "Análisis avanzado"
+
+msgid "Priority support"
+msgstr "Soporte prioritario"
+
+msgid "Subscribe"
+msgstr "Suscribirse"
+
+msgid "Enterprise Plan"
+msgstr "Plan Empresarial"
+
+msgid "Custom integrations"
+msgstr "Integraciones personalizadas"
+
+msgid "Team collaboration"
+msgstr "Colaboración en equipo"
+
+msgid "Contact"
+msgstr "Contacto"
+
+msgid "Free trial"
+msgstr "Prueba gratuita"
+
+msgid "30-day money back guarantee"
+msgstr "Garantía de devolución de dinero de 30 días"
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Current Locale:"
+msgstr "Idioma Actual:"
+
+msgid "Current Section:"
+msgstr "Sección Actual:"
+
+msgid "Messages Loaded:"
+msgstr "Mensajes Cargados:"
+
+msgid "Yes"
+msgstr "Sí"
+
+msgid "Loading State:"
+msgstr "Estado de Carga:"
+
+msgid "Ready"
+msgstr "Listo"
+
+msgid "Loading messages..."
+msgstr "Cargando mensajes..."
+
+#~ msgid "common.hello"
+#~ msgstr "Hola"
