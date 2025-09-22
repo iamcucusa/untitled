@@ -64,12 +64,18 @@ export function I18nDemo(): JSX.Element {
   /**
    * Handles locale toggle between English and Spanish
    * Also switches currency to match locale (EUR for ES, USD for EN)
+   * Prevents UI flashing by maintaining loading state during transition
    */
   const handleLocaleToggle = async (): Promise<void> => {
     const nextLocale = locale.startsWith('en') ? asLocaleCode('es') : asLocaleCode('en');
     const nextCurrency = nextLocale.startsWith('es')
       ? asCurrencyCode('EUR')
       : asCurrencyCode('USD');
+
+    // Set loading state immediately to prevent UI flashing
+    setLoading(true);
+    setReady(false);
+
     setLocale(nextLocale);
     setCurrency(nextCurrency);
     i18n.setCurrency(nextCurrency);
@@ -86,9 +92,13 @@ export function I18nDemo(): JSX.Element {
 
   /**
    * Handles section change between common and pricing
+   * Prevents UI flashing by maintaining loading state during transition
    * @param section - The section to switch to
    */
   const handleSectionChange = (section: 'common' | 'pricing'): void => {
+    // Set loading state immediately to prevent UI flashing
+    setLoading(true);
+    setReady(false);
     setCurrentSection(section);
   };
 
@@ -428,6 +438,39 @@ export function I18nDemo(): JSX.Element {
                   <div className="flex items-center justify-between">
                     <span>{i18n.t('5 items:', undefined, 'common')}</span>
                     <span className="font-mono font-semibold">{getPluralCategoryValue(5)}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Fallback Behavior Demo */}
+              <div className="rounded-lg bg-white p-6 shadow-md dark:bg-gray-800">
+                <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
+                  {i18n.t('Fallback Behavior', undefined, 'common')}
+                </h3>
+                <div className="space-y-3 text-gray-700 dark:text-gray-300">
+                  <div className="flex items-center justify-between">
+                    <span>{i18n.t('Existing translation:', undefined, 'common')}</span>
+                    <span className="font-mono font-semibold text-green-600 dark:text-green-400">
+                      {i18n.t('Hello', undefined, 'common')}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>{i18n.t('Missing translation:', undefined, 'common')}</span>
+                    <span className="font-mono font-semibold text-red-600 dark:text-red-400">
+                      {i18n.t('ThisKeyDoesNotExist', undefined, 'common')}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>{i18n.t('Wrong namespace:', undefined, 'common')}</span>
+                    <span className="font-mono font-semibold text-orange-600 dark:text-orange-400">
+                      {i18n.t('Hello', undefined, 'nonexistent')}
+                    </span>
+                  </div>
+                  <div className="mt-4 rounded-lg border border-yellow-200 bg-yellow-50 p-3 dark:border-yellow-800 dark:bg-yellow-900/20">
+                    <p className="text-sm text-yellow-800 dark:text-yellow-200">
+                      <strong>{i18n.t('Note:', undefined, 'common')}</strong>{' '}
+                      {i18n.t('Missing translations show the key as fallback', undefined, 'common')}
+                    </p>
                   </div>
                 </div>
               </div>

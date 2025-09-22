@@ -13,6 +13,9 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+msgid "ThisKeyDoesNotExist"
+msgstr "ThisKeyDoesNotExist"
+
 msgid "Welcome to our application"
 msgstr "Welcome to our application"
 
@@ -145,23 +148,23 @@ msgstr "2 items:"
 msgid "5 items:"
 msgstr "5 items:"
 
-msgid "zero"
-msgstr "zero"
+msgid "Fallback Behavior"
+msgstr "Fallback Behavior"
 
-msgid "one"
-msgstr "one"
+msgid "Existing translation:"
+msgstr "Existing translation:"
 
-msgid "two"
-msgstr "two"
+msgid "Missing translation:"
+msgstr "Missing translation:"
 
-msgid "few"
-msgstr "few"
+msgid "Wrong namespace:"
+msgstr "Wrong namespace:"
 
-msgid "many"
-msgstr "many"
+msgid "Note:"
+msgstr "Note:"
 
-msgid "other"
-msgstr "other"
+msgid "Missing translations show the key as fallback"
+msgstr "Missing translations show the key as fallback"
 
 msgid "Pricing"
 msgstr "Pricing"

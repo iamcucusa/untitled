@@ -13,6 +13,9 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+msgid "ThisKeyDoesNotExist"
+msgstr ""
+
 msgid "Welcome to our application"
 msgstr "Bienvenido a nuestra aplicación"
 
@@ -145,23 +148,23 @@ msgstr "2 elementos:"
 msgid "5 items:"
 msgstr "5 elementos:"
 
-msgid "zero"
-msgstr "cero"
+msgid "Fallback Behavior"
+msgstr "Comportamiento de Respaldo"
 
-msgid "one"
-msgstr "uno"
+msgid "Existing translation:"
+msgstr "Traducción existente:"
 
-msgid "two"
-msgstr "dos"
+msgid "Missing translation:"
+msgstr "Traducción faltante:"
 
-msgid "few"
-msgstr "pocos"
+msgid "Wrong namespace:"
+msgstr "Espacio de nombres incorrecto:"
 
-msgid "many"
-msgstr "muchos"
+msgid "Note:"
+msgstr "Nota:"
 
-msgid "other"
-msgstr "otros"
+msgid "Missing translations show the key as fallback"
+msgstr "Las traducciones faltantes muestran la clave como respaldo"
 
 msgid "Pricing"
 msgstr "Precios"
