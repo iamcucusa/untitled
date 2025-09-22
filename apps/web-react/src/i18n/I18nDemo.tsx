@@ -1,6 +1,7 @@
 import React from 'react';
 import { useI18n } from '@untitled-ds/i18n-react';
-import { asLocaleCode } from '@untitled-ds/i18n-core';
+import { asLocaleCode, asCurrencyCode } from '@untitled-ds/i18n-core';
+import { formatCurrency, asLocale, asCurrency } from '@untitled-ds/intl-core';
 
 /**
  * Comprehensive I18n Demo Component
@@ -17,6 +18,7 @@ import { asLocaleCode } from '@untitled-ds/i18n-core';
 export function I18nDemo(): JSX.Element {
   const i18n = useI18n();
   const [locale, setLocale] = React.useState(i18n.locale);
+  const [currency, setCurrency] = React.useState(i18n.currency);
   const [currentSection, setCurrentSection] = React.useState<'common' | 'pricing'>('common');
   const [ready, setReady] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
@@ -53,10 +55,25 @@ export function I18nDemo(): JSX.Element {
 
   /**
    * Handles locale toggle between English and Spanish
+   * Also switches currency to match locale (EUR for ES, USD for EN)
    */
   const handleLocaleToggle = async (): Promise<void> => {
     const nextLocale = locale.startsWith('en') ? asLocaleCode('es') : asLocaleCode('en');
+    const nextCurrency = nextLocale.startsWith('es')
+      ? asCurrencyCode('EUR')
+      : asCurrencyCode('USD');
     setLocale(nextLocale);
+    setCurrency(nextCurrency);
+    i18n.setCurrency(nextCurrency);
+  };
+
+  /**
+   * Handles currency change
+   */
+  const handleCurrencyChange = (newCurrency: string): void => {
+    const currencyCode = asCurrencyCode(newCurrency);
+    setCurrency(currencyCode);
+    i18n.setCurrency(currencyCode);
   };
 
   /**
@@ -74,6 +91,15 @@ export function I18nDemo(): JSX.Element {
    */
   const getLocaleDisplayName = (locale: string): string => {
     return locale.startsWith('en') ? 'English' : 'Español';
+  };
+
+  /**
+   * Formats a currency amount using the current locale and currency
+   * @param amount - The amount to format
+   * @returns Formatted currency string
+   */
+  const formatCurrencyAmount = (amount: number): string => {
+    return formatCurrency(amount, asLocale(locale), asCurrency(currency));
   };
 
   /**
@@ -140,6 +166,22 @@ export function I18nDemo(): JSX.Element {
               </button>
             </div>
           </div>
+
+          {/* Currency Selection */}
+          <div className="flex items-center gap-3">
+            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Currency:</span>
+            <select
+              value={currency}
+              onChange={(e) => handleCurrencyChange(e.target.value)}
+              disabled={loading}
+              className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+            >
+              <option value="USD">USD ($)</option>
+              <option value="EUR">EUR (€)</option>
+              <option value="GBP">GBP (£)</option>
+              <option value="JPY">JPY (¥)</option>
+            </select>
+          </div>
         </div>
       </div>
 
@@ -205,6 +247,40 @@ export function I18nDemo(): JSX.Element {
                   </p>
                 </div>
               </div>
+
+              {/* Currency Formatting Demo */}
+              <div className="rounded-lg bg-white p-6 shadow-md dark:bg-gray-800">
+                <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
+                  {i18n.t('Currency Formatting', undefined, 'common')}
+                </h3>
+                <div className="space-y-3 text-gray-700 dark:text-gray-300">
+                  <div className="flex items-center justify-between">
+                    <span>{i18n.t('Small amount:', undefined, 'common')}</span>
+                    <span className="font-mono font-semibold">{formatCurrencyAmount(12.99)}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>{i18n.t('Medium amount:', undefined, 'common')}</span>
+                    <span className="font-mono font-semibold">{formatCurrencyAmount(129.95)}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>{i18n.t('Large amount:', undefined, 'common')}</span>
+                    <span className="font-mono font-semibold">{formatCurrencyAmount(1299.99)}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>{i18n.t('Very large amount:', undefined, 'common')}</span>
+                    <span className="font-mono font-semibold">
+                      {formatCurrencyAmount(12999.99)}
+                    </span>
+                  </div>
+                  <div className="mt-4 rounded-lg bg-blue-50 p-3 dark:bg-blue-900/20">
+                    <p className="text-sm text-blue-800 dark:text-blue-200">
+                      <strong>{i18n.t('Current settings:', undefined, 'common')}</strong> {locale}{' '}
+                      {i18n.t('locale', undefined, 'common')}, {currency}{' '}
+                      {i18n.t('currency', undefined, 'common')}
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
 
@@ -227,7 +303,7 @@ export function I18nDemo(): JSX.Element {
                     {i18n.t('Basic Plan', undefined, 'pricing')}
                   </h3>
                   <div className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
-                    $9{' '}
+                    {formatCurrencyAmount(9)}{' '}
                     <span className="text-sm text-gray-500 dark:text-gray-400">
                       {i18n.t('per month', undefined, 'pricing')}
                     </span>
@@ -254,7 +330,7 @@ export function I18nDemo(): JSX.Element {
                     {i18n.t('Pro Plan', undefined, 'pricing')}
                   </h3>
                   <div className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
-                    $29{' '}
+                    {formatCurrencyAmount(29)}{' '}
                     <span className="text-sm text-gray-500 dark:text-gray-400">
                       {i18n.t('per month', undefined, 'pricing')}
                     </span>
@@ -281,7 +357,7 @@ export function I18nDemo(): JSX.Element {
                     {i18n.t('Enterprise Plan', undefined, 'pricing')}
                   </h3>
                   <div className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
-                    $99{' '}
+                    {formatCurrencyAmount(99)}{' '}
                     <span className="text-sm text-gray-500 dark:text-gray-400">
                       {i18n.t('per month', undefined, 'pricing')}
                     </span>

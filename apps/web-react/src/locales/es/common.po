@@ -70,6 +70,30 @@ msgstr "Mañana"
 msgid "Next week"
 msgstr "La próxima semana"
 
+msgid "Currency Formatting"
+msgstr "Formato de Moneda"
+
+msgid "Small amount:"
+msgstr "Cantidad pequeña:"
+
+msgid "Medium amount:"
+msgstr "Cantidad mediana:"
+
+msgid "Large amount:"
+msgstr "Cantidad grande:"
+
+msgid "Very large amount:"
+msgstr "Cantidad muy grande:"
+
+msgid "Current settings:"
+msgstr "Configuración actual:"
+
+msgid "locale"
+msgstr "idioma"
+
+msgid "currency"
+msgstr "moneda"
+
 msgid "Pricing"
 msgstr "Precios"
 
