@@ -1,4 +1,4 @@
-// eslint.config.mjs (flat config for ESLint v9)
+/** eslint.config.mjs (flat config for ESLint v9) */
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import { FlatCompat } from '@eslint/eslintrc';
@@ -8,13 +8,13 @@ import { createRequire } from 'module';
 
 const require = createRequire(import.meta.url);
 
-// ESM-safe __dirname for FlatCompat (to reuse legacy plugin configs)
+/** ESM-safe __dirname for FlatCompat (to reuse legacy plugin configs) */
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const compat = new FlatCompat({ baseDirectory: __dirname });
 
 export default [
-  // Ignore build/artifact folders
+  /** Ignore build/artifact folders */
   {
     ignores: [
       '**/dist/**',
@@ -23,22 +23,22 @@ export default [
       '**/playwright-report/**',
       '**/blob-report/**',
       'lhci-report/**',
-      '**/src/locales/**/*.mjs', // Generated Lingui files
+      '**/src/locales/**/*.mjs', /** Generated Lingui files */
     ],
   },
 
-  // Base JS and TS recommended rules (non type-checked for speed)
+  /** Base JS and TS recommended rules (non type-checked for speed) */
   js.configs.recommended,
   ...tseslint.configs.recommended,
 
-  // Reuse plugin recommended sets via FlatCompat (React, Hooks, a11y)
+  /** Reuse plugin recommended sets via FlatCompat (React, Hooks, a11y) */
   ...compat.extends(
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
   ),
 
-  // Project-specific settings for our React/TS app
+  /** Project-specific settings for our React/TS app */
   {
     files: ['apps/**/*.ts', 'apps/**/*.tsx'],
     languageOptions: {
@@ -59,11 +59,11 @@ export default [
       } 
     },
     rules: {
-      // React 17+ JSX transform (no need to import React)
+      /** React 17+ JSX transform (no need to import React) */
       'react/react-in-jsx-scope': 'off',
       'react/jsx-uses-react': 'off',
       
-      // Custom i18n indirection detection rules
+      /** Custom i18n indirection detection rules */
       'i18n/no-i18n-indirection': 'error',
     },
   },
