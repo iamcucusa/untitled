@@ -320,8 +320,8 @@ export function I18nDemo(): JSX.Element {
                       {formatCurrencyAmount(12999.99)}
                     </span>
                   </div>
-                  <div className="mt-4 rounded-lg bg-blue-50 p-3 dark:bg-blue-900/20">
-                    <p className="text-sm text-blue-800 dark:text-blue-200">
+                  <div className="mt-4 rounded-lg border border-blue-200 bg-blue-50 p-3 dark:border-gray-600 dark:bg-gray-700">
+                    <p className="text-sm text-blue-800 dark:text-gray-200">
                       <strong>{i18n.t('Current settings:', undefined, 'common')}</strong> {locale}{' '}
                       {i18n.t('locale', undefined, 'common')}, {currency}{' '}
                       {i18n.t('currency', undefined, 'common')}
