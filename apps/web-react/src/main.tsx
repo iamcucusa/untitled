@@ -24,18 +24,28 @@ if (!root) {
   container.__root = root;
 }
 
+/**
+ * Dark mode toggle component that manages theme state and persistence.
+ *
+ * Features:
+ * - Loads saved theme preference from localStorage on mount
+ * - Applies theme changes to document root and persists to localStorage
+ * - Provides accessible button with proper ARIA attributes
+ *
+ * @returns {JSX.Element} A button component for toggling dark/light mode
+ */
 function DarkModeToggle() {
   const [dark, setDark] = useState<boolean>(() =>
     document.documentElement.classList.contains('dark'),
   );
 
-  // Load saved preference
+  /** Load saved preference */
   useEffect(() => {
     const saved = localStorage.getItem('theme');
     if (saved === 'dark') setDark(true);
   }, []);
 
-  // Apply preference
+  /** Apply preference */
   useEffect(() => {
     const root = document.documentElement;
     if (dark) {
@@ -59,6 +69,18 @@ function DarkModeToggle() {
   );
 }
 
+/**
+ * Accessible overlay/modal demo component with focus management.
+ *
+ * Features:
+ * - Focus trap within modal content
+ * - ESC key handling to close modal
+ * - Focus restoration to trigger button on close
+ * - Keyboard-accessible backdrop (Enter/Space to close)
+ * - Proper ARIA attributes for screen readers
+ *
+ * @returns {JSX.Element} A section containing the overlay trigger and modal
+ */
 function OverlayDemo() {
   const [open, setOpen] = React.useState(false);
   const triggerRef = React.useRef<HTMLButtonElement | null>(null);
@@ -74,13 +96,13 @@ function OverlayDemo() {
     const prevAriaHidden = rootEl?.getAttribute('aria-hidden');
     rootEl?.setAttribute('aria-hidden', 'true');
 
-    // focus first focusable (Close button)
+    /** Focus first focusable element (Close button) for accessibility */
     const first = dialogRef.current?.querySelector<HTMLElement>(
       'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
     );
     first?.focus();
 
-    // ESC and focus trap
+    /** Handle ESC key and implement focus trap for accessibility */
     const onKeyDown = (e: KeyboardEvent) => {
       if (!dialogRef.current) return;
 
@@ -125,13 +147,25 @@ function OverlayDemo() {
     };
   }, [open]);
 
-  // keyboard-accessible backdrop: Enter/Space closes, click only when target===currentTarget
+  /**
+   * Handles keyboard events on the backdrop for accessibility.
+   * Enter or Space key closes the modal.
+   *
+   * @param e - Keyboard event from backdrop element
+   */
   const onBackdropKey = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       setOpen(false);
     }
   };
+
+  /**
+   * Handles mouse events on the backdrop.
+   * Only closes when clicking directly on the backdrop (not child elements).
+   *
+   * @param e - Mouse event from backdrop element
+   */
   const onBackdropMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) setOpen(false);
   };
@@ -188,10 +222,27 @@ function OverlayDemo() {
   );
 }
 
+/**
+ * Form demo component showcasing accessible form validation and error handling.
+ *
+ * Features:
+ * - Real-time validation with proper ARIA attributes
+ * - Accessible error messaging with role="alert"
+ * - Form field hints and error associations
+ * - Visual and screen reader feedback
+ *
+ * @returns {JSX.Element} A form section with name and email fields
+ */
 function FormDemo() {
   const [submitted, setSubmitted] = React.useState(false);
   const [errors, setErrors] = React.useState<{ email?: string; name?: string }>({});
 
+  /**
+   * Validates form fields and sets appropriate ARIA attributes.
+   *
+   * @param form - The HTML form element to validate
+   * @returns {boolean} True if form is valid, false otherwise
+   */
   function validate(form: HTMLFormElement) {
     const next: { email?: string; name?: string } = {};
     const name = form.name as unknown as HTMLInputElement;
@@ -204,11 +255,11 @@ function FormDemo() {
     }
     setErrors(next);
 
-    // Reflect validity on the controls for styling + AT
+    /** Set ARIA attributes for accessibility and styling */
     name.setAttribute('aria-invalid', String(Boolean(next.name)));
     email.setAttribute('aria-invalid', String(Boolean(next.email)));
 
-    // Wire aria-describedby to hint + (optional) error id
+    /** Connect form fields to their hints and error messages via aria-describedby */
     name.setAttribute(
       'aria-describedby',
       ['name-hint', next.name ? 'name-error' : ''].filter(Boolean).join(' '),
@@ -221,6 +272,11 @@ function FormDemo() {
     return Object.keys(next).length === 0;
   }
 
+  /**
+   * Handles form submission with validation and cleanup.
+   *
+   * @param e - Form submission event
+   */
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
@@ -240,8 +296,14 @@ function FormDemo() {
     }
   }
 
+  /**
+   * Validates the form when a field loses focus.
+   * Simple but effective validation approach.
+   *
+   * @param e - Focus event from form element
+   */
   function onBlur(e: React.FocusEvent<HTMLFormElement>) {
-    // validate the whole form on blur of a field (simple, but effective)
+    /** validate the whole form on blur of a field (simple, but effective) */
     validate(e.currentTarget);
   }
 
@@ -320,17 +382,34 @@ function FormDemo() {
   );
 }
 
+/**
+ * Form choices demo component showcasing radio buttons and checkboxes.
+ *
+ * Features:
+ * - Radio button group validation (one selection required)
+ * - Checkbox group validation (at least one selection required)
+ * - Accessible fieldset/legend structure
+ * - Proper error messaging and ARIA attributes
+ *
+ * @returns {JSX.Element} A form section with radio and checkbox groups
+ */
 function FormChoicesDemo() {
   const [errors, setErrors] = React.useState<{ contact?: string; interests?: string }>({});
 
+  /**
+   * Validates radio and checkbox groups with proper ARIA attributes.
+   *
+   * @param form - The HTML form element to validate
+   * @returns {boolean} True if form is valid, false otherwise
+   */
   function validate(form: HTMLFormElement) {
     const next: { contact?: string; interests?: string } = {};
 
-    // Radios (required: one selected)
+    /** Validate radio button group (exactly one selection required) */
     const contactValue = (form.elements.namedItem('contact') as RadioNodeList).value;
     if (!contactValue) next.contact = 'Choose at least one contact method.';
 
-    // Checkboxes (at least one)
+    /** Validate checkbox group (at least one selection required) */
     const interestsChecked = form.querySelectorAll<HTMLInputElement>(
       'input[name="interests"]:checked',
     );
@@ -355,6 +434,11 @@ function FormChoicesDemo() {
     return Object.keys(next).length === 0;
   }
 
+  /**
+   * Handles form submission for choices demo.
+   *
+   * @param e - Form submission event
+   */
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
@@ -368,8 +452,13 @@ function FormChoicesDemo() {
     }
   }
 
+  /**
+   * Live-validates the form as user interacts with it.
+   *
+   * @param e - Form change event
+   */
   function onChange(e: React.FormEvent<HTMLFormElement>) {
-    // live-validate as user interacts
+    /** live-validate as user interacts */
     validate(e.currentTarget);
   }
 
@@ -450,6 +539,18 @@ function FormChoicesDemo() {
   );
 }
 
+/**
+ * Main application component showcasing the design system.
+ *
+ * Features:
+ * - Accessible skip link for keyboard navigation
+ * - Dark mode toggle functionality
+ * - Design system component demonstrations
+ * - Form validation examples
+ * - Overlay/modal accessibility patterns
+ *
+ * @returns {JSX.Element} The main application layout with all demo components
+ */
 function App() {
   return (
     <>

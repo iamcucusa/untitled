@@ -9,7 +9,7 @@ import { join } from 'path';
  * Supports GitHub Pages deployment with proper base path handling
  */
 export default defineConfig(({ mode }) => {
-  // Get base path from environment variable (set by GitHub Actions)
+  /** Get base path from environment variable for deployment configuration */
   const base = process.env.VITE_BASE || '/';
 
   return {
@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => {
       react({
         babel: { plugins: ['macros'] },
       }),
-      // Custom plugin to copy compiled catalogs to dist
+      /** Custom plugin to copy compiled Lingui catalogs to distribution */
       {
         name: 'copy-catalogs',
         writeBundle() {
@@ -27,7 +27,7 @@ export default defineConfig(({ mode }) => {
           const distLocales = join(process.cwd(), 'dist/src/locales');
 
           if (existsSync(srcLocales)) {
-            // Recursively copy all .mjs files from src/locales to dist/src/locales
+            /** Recursively copy all compiled .mjs catalog files to distribution */
             function copyMjsFiles(srcDir: string, destDir: string) {
               if (!existsSync(destDir)) {
                 mkdirSync(destDir, { recursive: true });
@@ -52,7 +52,7 @@ export default defineConfig(({ mode }) => {
       },
     ],
     build: {
-      // Ensure consistent asset naming for GitHub Pages
+      /** Configure consistent asset naming for deployment */
       rollupOptions: {
         output: {
           assetFileNames: 'assets/[name]-[hash][extname]',

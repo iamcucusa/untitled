@@ -28,10 +28,10 @@ export function I18nProvider(props: { i18n: I18n; children: React.ReactNode }) {
    */
   const getSnapshot = () => `${i18n.locale}|${i18n.currency}`;
 
-  // For SSR environments; same shape as getSnapshot
+  /** Server-side rendering snapshot (same shape as getSnapshot) */
   const getServerSnapshot = getSnapshot;
 
-  // We don't use the returned value directly; it only triggers re-renders.
+  /** Subscribe to i18n changes and trigger re-renders when locale/currency changes */
   useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   return <I18nContext.Provider value={i18n}>{children}</I18nContext.Provider>;

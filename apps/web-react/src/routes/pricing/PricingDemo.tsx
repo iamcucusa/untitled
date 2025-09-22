@@ -1,6 +1,16 @@
 import { t } from '@lingui/core/macro';
 import { useI18n } from '@untitled-ds/i18n-react';
 
+/**
+ * Pricing demo component showcasing internationalized pricing content.
+ *
+ * Features:
+ * - Uses i18n for pricing title and call-to-action text
+ * - Demonstrates namespace-based translation loading
+ * - Accessible button and heading structure
+ *
+ * @returns {JSX.Element} A pricing section with internationalized content
+ */
 export function PricingDemo(): JSX.Element {
   const i18n = useI18n();
   return (

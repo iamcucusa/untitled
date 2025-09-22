@@ -6,7 +6,7 @@ import { createViteCatalogLoader } from './loader';
  * The instance is shared via React context by I18nProvider.
  */
 export function createAppI18n(): I18n {
-  // Use Vite's base URL to ensure correct paths in production (e.g., GitHub Pages)
+  /** Use Vite's base URL to ensure correct paths in production deployments */
   const basePath = `${import.meta.env.BASE_URL}src/locales`;
   const loader = createViteCatalogLoader(basePath);
   return new I18n({

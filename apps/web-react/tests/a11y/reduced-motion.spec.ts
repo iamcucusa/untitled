@@ -7,7 +7,7 @@ test.describe('reduced motion', () => {
 
     const dur = await page.$eval('button.btn', (el) => getComputedStyle(el).transitionDuration);
 
-    // Some engines return "0s", "0ms", or scientific notation (e.g., "1e-05s")
+    /** Convert various duration formats to milliseconds for comparison */
     const toMs = (d: string) => {
       d = d.trim();
       if (d.endsWith('ms')) return parseFloat(d);

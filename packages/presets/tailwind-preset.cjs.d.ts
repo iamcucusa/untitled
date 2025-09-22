@@ -1,4 +1,4 @@
-// Type the Tailwind preset as a Partial<Config> to be flexible.
+/** Type the Tailwind preset as a Partial<Config> to be flexible. */
 import type { Config } from 'tailwindcss';
 
 declare const preset: Partial<Config>;
