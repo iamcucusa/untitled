@@ -13,8 +13,23 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-msgid "ThisKeyDoesNotExist"
-msgstr ""
+msgid "zero"
+msgstr "cero"
+
+msgid "one"
+msgstr "uno"
+
+msgid "two"
+msgstr "dos"
+
+msgid "few"
+msgstr "pocos"
+
+msgid "many"
+msgstr "muchos"
+
+msgid "other"
+msgstr "otros"
 
 msgid "Welcome to our application"
 msgstr "Bienvenido a nuestra aplicación"
@@ -22,56 +37,11 @@ msgstr "Bienvenido a nuestra aplicación"
 msgid "Loading..."
 msgstr "Cargando..."
 
-msgid "Home"
-msgstr "Inicio"
+msgid "Common"
+msgstr "Común"
 
-msgid "Hello"
-msgstr "Hola"
-
-msgid "Thank you"
-msgstr "Gracias"
-
-msgid "Please"
-msgstr "Por favor"
-
-msgid "Click here"
-msgstr "Haz clic aquí"
-
-msgid "Settings"
-msgstr "Configuración"
-
-msgid "Create"
-msgstr "Crear"
-
-msgid "Edit"
-msgstr "Editar"
-
-msgid "Save"
-msgstr "Guardar"
-
-msgid "Delete"
-msgstr "Eliminar"
-
-msgid "Information"
-msgstr "Información"
-
-msgid "Today"
-msgstr "Hoy"
-
-msgid "This week"
-msgstr "Esta semana"
-
-msgid "Yesterday"
-msgstr "Ayer"
-
-msgid "Last week"
-msgstr "La semana pasada"
-
-msgid "Tomorrow"
-msgstr "Mañana"
-
-msgid "Next week"
-msgstr "La próxima semana"
+msgid "Pricing"
+msgstr "Precios"
 
 msgid "Currency Formatting"
 msgstr "Formato de Moneda"
@@ -87,15 +57,6 @@ msgstr "Cantidad grande:"
 
 msgid "Very large amount:"
 msgstr "Cantidad muy grande:"
-
-msgid "Current settings:"
-msgstr "Configuración actual:"
-
-msgid "locale"
-msgstr "idioma"
-
-msgid "currency"
-msgstr "moneda"
 
 msgid "Number Formatting"
 msgstr "Formato de Números"
@@ -154,8 +115,14 @@ msgstr "Comportamiento de Respaldo"
 msgid "Existing translation:"
 msgstr "Traducción existente:"
 
+msgid "Hello"
+msgstr "Hola"
+
 msgid "Missing translation:"
 msgstr "Traducción faltante:"
+
+msgid "ThisKeyDoesNotExist"
+msgstr ""
 
 msgid "Wrong namespace:"
 msgstr "Espacio de nombres incorrecto:"
@@ -166,8 +133,17 @@ msgstr "Nota:"
 msgid "Missing translations show the key as fallback"
 msgstr "Las traducciones faltantes muestran la clave como respaldo"
 
-msgid "Pricing"
-msgstr "Precios"
+msgid "Current settings:"
+msgstr "Configuración actual:"
+
+msgid "locale"
+msgstr "idioma"
+
+msgid "currency"
+msgstr "moneda"
+
+msgid "This component uses FormattingContext for framework-agnostic formatting"
+msgstr "Este componente usa FormattingContext para formateo agnóstico de frameworks"
 
 msgid "Choose your plan"
 msgstr "Elige tu plan"
@@ -199,17 +175,11 @@ msgstr "Análisis avanzado"
 msgid "Priority support"
 msgstr "Soporte prioritario"
 
-msgid "Subscribe"
-msgstr "Suscribirse"
-
 msgid "Enterprise Plan"
 msgstr "Plan Empresarial"
 
 msgid "Custom integrations"
 msgstr "Integraciones personalizadas"
-
-msgid "Team collaboration"
-msgstr "Colaboración en equipo"
 
 msgid "Contact"
 msgstr "Contacto"
@@ -219,27 +189,3 @@ msgstr "Prueba gratuita"
 
 msgid "30-day money back guarantee"
 msgstr "Garantía de devolución de dinero de 30 días"
-
-msgid "Status"
-msgstr "Estado"
-
-msgid "Current Locale:"
-msgstr "Idioma Actual:"
-
-msgid "Current Section:"
-msgstr "Sección Actual:"
-
-msgid "Messages Loaded:"
-msgstr "Mensajes Cargados:"
-
-msgid "Yes"
-msgstr "Sí"
-
-msgid "Loading State:"
-msgstr "Estado de Carga:"
-
-msgid "Ready"
-msgstr "Listo"
-
-msgid "Loading messages..."
-msgstr "Cargando mensajes..."

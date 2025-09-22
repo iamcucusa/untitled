@@ -13,8 +13,23 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-msgid "ThisKeyDoesNotExist"
-msgstr "ThisKeyDoesNotExist"
+msgid "zero"
+msgstr "zero"
+
+msgid "one"
+msgstr "one"
+
+msgid "two"
+msgstr "two"
+
+msgid "few"
+msgstr "few"
+
+msgid "many"
+msgstr "many"
+
+msgid "other"
+msgstr "other"
 
 msgid "Welcome to our application"
 msgstr "Welcome to our application"
@@ -22,56 +37,11 @@ msgstr "Welcome to our application"
 msgid "Loading..."
 msgstr "Loading..."
 
-msgid "Home"
-msgstr "Home"
+msgid "Common"
+msgstr "Common"
 
-msgid "Hello"
-msgstr "Hello"
-
-msgid "Thank you"
-msgstr "Thank you"
-
-msgid "Please"
-msgstr "Please"
-
-msgid "Click here"
-msgstr "Click here"
-
-msgid "Settings"
-msgstr "Settings"
-
-msgid "Create"
-msgstr "Create"
-
-msgid "Edit"
-msgstr "Edit"
-
-msgid "Save"
-msgstr "Save"
-
-msgid "Delete"
-msgstr "Delete"
-
-msgid "Information"
-msgstr "Information"
-
-msgid "Today"
-msgstr "Today"
-
-msgid "This week"
-msgstr "This week"
-
-msgid "Yesterday"
-msgstr "Yesterday"
-
-msgid "Last week"
-msgstr "Last week"
-
-msgid "Tomorrow"
-msgstr "Tomorrow"
-
-msgid "Next week"
-msgstr "Next week"
+msgid "Pricing"
+msgstr "Pricing"
 
 msgid "Currency Formatting"
 msgstr "Currency Formatting"
@@ -87,15 +57,6 @@ msgstr "Large amount:"
 
 msgid "Very large amount:"
 msgstr "Very large amount:"
-
-msgid "Current settings:"
-msgstr "Current settings:"
-
-msgid "locale"
-msgstr "locale"
-
-msgid "currency"
-msgstr "currency"
 
 msgid "Number Formatting"
 msgstr "Number Formatting"
@@ -154,8 +115,14 @@ msgstr "Fallback Behavior"
 msgid "Existing translation:"
 msgstr "Existing translation:"
 
+msgid "Hello"
+msgstr "Hello"
+
 msgid "Missing translation:"
 msgstr "Missing translation:"
+
+msgid "ThisKeyDoesNotExist"
+msgstr "ThisKeyDoesNotExist"
 
 msgid "Wrong namespace:"
 msgstr "Wrong namespace:"
@@ -166,8 +133,17 @@ msgstr "Note:"
 msgid "Missing translations show the key as fallback"
 msgstr "Missing translations show the key as fallback"
 
-msgid "Pricing"
-msgstr "Pricing"
+msgid "Current settings:"
+msgstr "Current settings:"
+
+msgid "locale"
+msgstr "locale"
+
+msgid "currency"
+msgstr "currency"
+
+msgid "This component uses FormattingContext for framework-agnostic formatting"
+msgstr "This component uses FormattingContext for framework-agnostic formatting"
 
 msgid "Choose your plan"
 msgstr "Choose your plan"
@@ -199,17 +175,11 @@ msgstr "Advanced analytics"
 msgid "Priority support"
 msgstr "Priority support"
 
-msgid "Subscribe"
-msgstr "Subscribe"
-
 msgid "Enterprise Plan"
 msgstr "Enterprise Plan"
 
 msgid "Custom integrations"
 msgstr "Custom integrations"
-
-msgid "Team collaboration"
-msgstr "Team collaboration"
 
 msgid "Contact"
 msgstr "Contact"
@@ -219,27 +189,3 @@ msgstr "Free trial"
 
 msgid "30-day money back guarantee"
 msgstr "30-day money back guarantee"
-
-msgid "Status"
-msgstr "Status"
-
-msgid "Current Locale:"
-msgstr "Current Locale:"
-
-msgid "Current Section:"
-msgstr "Current Section:"
-
-msgid "Messages Loaded:"
-msgstr "Messages Loaded:"
-
-msgid "Yes"
-msgstr "Yes"
-
-msgid "Loading State:"
-msgstr "Loading State:"
-
-msgid "Ready"
-msgstr "Ready"
-
-msgid "Loading messages..."
-msgstr "Loading messages..."
