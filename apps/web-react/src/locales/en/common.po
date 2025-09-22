@@ -94,6 +94,75 @@ msgstr "locale"
 msgid "currency"
 msgstr "currency"
 
+msgid "Number Formatting"
+msgstr "Number Formatting"
+
+msgid "Decimal:"
+msgstr "Decimal:"
+
+msgid "Percent:"
+msgstr "Percent:"
+
+msgid "Large number:"
+msgstr "Large number:"
+
+msgid "Date Formatting"
+msgstr "Date Formatting"
+
+msgid "Short date:"
+msgstr "Short date:"
+
+msgid "Long date:"
+msgstr "Long date:"
+
+msgid "Date & time:"
+msgstr "Date & time:"
+
+msgid "Relative Time"
+msgstr "Relative Time"
+
+msgid "3 days ago:"
+msgstr "3 days ago:"
+
+msgid "2 hours ago:"
+msgstr "2 hours ago:"
+
+msgid "In 5 minutes:"
+msgstr "In 5 minutes:"
+
+msgid "Plural Categories"
+msgstr "Plural Categories"
+
+msgid "0 items:"
+msgstr "0 items:"
+
+msgid "1 item:"
+msgstr "1 item:"
+
+msgid "2 items:"
+msgstr "2 items:"
+
+msgid "5 items:"
+msgstr "5 items:"
+
+msgid "zero"
+msgstr "zero"
+
+msgid "one"
+msgstr "one"
+
+msgid "two"
+msgstr "two"
+
+msgid "few"
+msgstr "few"
+
+msgid "many"
+msgstr "many"
+
+msgid "other"
+msgstr "other"
+
 msgid "Pricing"
 msgstr "Pricing"
 

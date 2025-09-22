@@ -1,7 +1,15 @@
 import React from 'react';
 import { useI18n } from '@untitled-ds/i18n-react';
 import { asLocaleCode, asCurrencyCode } from '@untitled-ds/i18n-core';
-import { formatCurrency, asLocale, asCurrency } from '@untitled-ds/intl-core';
+import {
+  formatCurrency,
+  formatNumber,
+  formatDate,
+  formatRelativeTime,
+  getPluralCategory,
+  asLocale,
+  asCurrency,
+} from '@untitled-ds/intl-core';
 
 /**
  * Comprehensive I18n Demo Component
@@ -100,6 +108,46 @@ export function I18nDemo(): JSX.Element {
    */
   const formatCurrencyAmount = (amount: number): string => {
     return formatCurrency(amount, asLocale(locale), asCurrency(currency));
+  };
+
+  /**
+   * Formats a number using the current locale
+   * @param value - The number to format
+   * @param options - Number formatting options
+   * @returns Formatted number string
+   */
+  const formatNumberValue = (value: number, options?: any): string => {
+    return formatNumber(value, asLocale(locale), options);
+  };
+
+  /**
+   * Formats a date using the current locale
+   * @param date - The date to format
+   * @param options - Date formatting options
+   * @returns Formatted date string
+   */
+  const formatDateValue = (date: Date, options?: any): string => {
+    return formatDate(date, asLocale(locale), options);
+  };
+
+  /**
+   * Formats relative time using the current locale
+   * @param value - The time value
+   * @param unit - The time unit
+   * @returns Formatted relative time string
+   */
+  const formatRelativeTimeValue = (value: number, unit: Intl.RelativeTimeFormatUnit): string => {
+    return formatRelativeTime(value, unit, asLocale(locale));
+  };
+
+  /**
+   * Gets plural category for a number using the current locale
+   * @param value - The number to get plural category for
+   * @returns Plural category string
+   */
+  const getPluralCategoryValue = (value: number): string => {
+    const category = getPluralCategory(value, asLocale(locale));
+    return i18n.t(category, undefined, 'common');
   };
 
   /**
@@ -278,6 +326,108 @@ export function I18nDemo(): JSX.Element {
                       {i18n.t('locale', undefined, 'common')}, {currency}{' '}
                       {i18n.t('currency', undefined, 'common')}
                     </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* International Number Formatting Demo */}
+              <div className="rounded-lg bg-white p-6 shadow-md dark:bg-gray-800">
+                <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
+                  {i18n.t('Number Formatting', undefined, 'common')}
+                </h3>
+                <div className="space-y-3 text-gray-700 dark:text-gray-300">
+                  <div className="flex items-center justify-between">
+                    <span>{i18n.t('Decimal:', undefined, 'common')}</span>
+                    <span className="font-mono font-semibold">{formatNumberValue(1234567.89)}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>{i18n.t('Percent:', undefined, 'common')}</span>
+                    <span className="font-mono font-semibold">
+                      {formatNumberValue(0.75, { style: 'percent' })}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>{i18n.t('Large number:', undefined, 'common')}</span>
+                    <span className="font-mono font-semibold">{formatNumberValue(1234567890)}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* International Date Formatting Demo */}
+              <div className="rounded-lg bg-white p-6 shadow-md dark:bg-gray-800">
+                <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
+                  {i18n.t('Date Formatting', undefined, 'common')}
+                </h3>
+                <div className="space-y-3 text-gray-700 dark:text-gray-300">
+                  <div className="flex items-center justify-between">
+                    <span>{i18n.t('Short date:', undefined, 'common')}</span>
+                    <span className="font-mono font-semibold">
+                      {formatDateValue(new Date(), { dateStyle: 'short' })}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>{i18n.t('Long date:', undefined, 'common')}</span>
+                    <span className="font-mono font-semibold">
+                      {formatDateValue(new Date(), { dateStyle: 'long' })}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>{i18n.t('Date & time:', undefined, 'common')}</span>
+                    <span className="font-mono font-semibold">
+                      {formatDateValue(new Date(), { dateStyle: 'medium', timeStyle: 'short' })}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Relative Time Demo */}
+              <div className="rounded-lg bg-white p-6 shadow-md dark:bg-gray-800">
+                <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
+                  {i18n.t('Relative Time', undefined, 'common')}
+                </h3>
+                <div className="space-y-3 text-gray-700 dark:text-gray-300">
+                  <div className="flex items-center justify-between">
+                    <span>{i18n.t('3 days ago:', undefined, 'common')}</span>
+                    <span className="font-mono font-semibold">
+                      {formatRelativeTimeValue(-3, 'day')}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>{i18n.t('2 hours ago:', undefined, 'common')}</span>
+                    <span className="font-mono font-semibold">
+                      {formatRelativeTimeValue(-2, 'hour')}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>{i18n.t('In 5 minutes:', undefined, 'common')}</span>
+                    <span className="font-mono font-semibold">
+                      {formatRelativeTimeValue(5, 'minute')}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Plural Categories Demo */}
+              <div className="rounded-lg bg-white p-6 shadow-md dark:bg-gray-800">
+                <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
+                  {i18n.t('Plural Categories', undefined, 'common')}
+                </h3>
+                <div className="space-y-3 text-gray-700 dark:text-gray-300">
+                  <div className="flex items-center justify-between">
+                    <span>{i18n.t('0 items:', undefined, 'common')}</span>
+                    <span className="font-mono font-semibold">{getPluralCategoryValue(0)}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>{i18n.t('1 item:', undefined, 'common')}</span>
+                    <span className="font-mono font-semibold">{getPluralCategoryValue(1)}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>{i18n.t('2 items:', undefined, 'common')}</span>
+                    <span className="font-mono font-semibold">{getPluralCategoryValue(2)}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>{i18n.t('5 items:', undefined, 'common')}</span>
+                    <span className="font-mono font-semibold">{getPluralCategoryValue(5)}</span>
                   </div>
                 </div>
               </div>

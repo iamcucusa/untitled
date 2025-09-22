@@ -94,6 +94,75 @@ msgstr "idioma"
 msgid "currency"
 msgstr "moneda"
 
+msgid "Number Formatting"
+msgstr "Formato de Números"
+
+msgid "Decimal:"
+msgstr "Decimal:"
+
+msgid "Percent:"
+msgstr "Porcentaje:"
+
+msgid "Large number:"
+msgstr "Número grande:"
+
+msgid "Date Formatting"
+msgstr "Formato de Fechas"
+
+msgid "Short date:"
+msgstr "Fecha corta:"
+
+msgid "Long date:"
+msgstr "Fecha larga:"
+
+msgid "Date & time:"
+msgstr "Fecha y hora:"
+
+msgid "Relative Time"
+msgstr "Tiempo Relativo"
+
+msgid "3 days ago:"
+msgstr "Hace 3 días:"
+
+msgid "2 hours ago:"
+msgstr "Hace 2 horas:"
+
+msgid "In 5 minutes:"
+msgstr "En 5 minutos:"
+
+msgid "Plural Categories"
+msgstr "Categorías Plurales"
+
+msgid "0 items:"
+msgstr "0 elementos:"
+
+msgid "1 item:"
+msgstr "1 elemento:"
+
+msgid "2 items:"
+msgstr "2 elementos:"
+
+msgid "5 items:"
+msgstr "5 elementos:"
+
+msgid "zero"
+msgstr "cero"
+
+msgid "one"
+msgstr "uno"
+
+msgid "two"
+msgstr "dos"
+
+msgid "few"
+msgstr "pocos"
+
+msgid "many"
+msgstr "muchos"
+
+msgid "other"
+msgstr "otros"
+
 msgid "Pricing"
 msgstr "Precios"
 
