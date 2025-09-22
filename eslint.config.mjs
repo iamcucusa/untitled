@@ -4,6 +4,9 @@ import tseslint from 'typescript-eslint';
 import { FlatCompat } from '@eslint/eslintrc';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 
 // ESM-safe __dirname for FlatCompat (to reuse legacy plugin configs)
 const __filename = fileURLToPath(import.meta.url);
@@ -20,6 +23,7 @@ export default [
       '**/playwright-report/**',
       '**/blob-report/**',
       'lhci-report/**',
+      '**/src/locales/**/*.mjs', // Generated Lingui files
     ],
   },
 
@@ -45,11 +49,22 @@ export default [
         ecmaFeatures: { jsx: true },
       },
     },
-    settings: { react: { version: 'detect' } },
+    plugins: {
+      'i18n': require('./apps/web-react/eslint-plugin-i18n.cjs'),
+    },
+    settings: { 
+      react: { 
+        version: 'detect',
+        runtime: 'automatic'
+      } 
+    },
     rules: {
       // React 17+ JSX transform (no need to import React)
       'react/react-in-jsx-scope': 'off',
       'react/jsx-uses-react': 'off',
+      
+      // Custom i18n indirection detection rules
+      'i18n/no-i18n-indirection': 'error',
     },
   },
 ];

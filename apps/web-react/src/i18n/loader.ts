@@ -5,10 +5,6 @@ import type { CatalogLoader, Messages } from '@untitled-ds/i18n-core';
  * Lingui typically emits `export const messages = {...}`.
  * Some toolchains might bundle it under a `default` export.
  */
-type CatalogModule =
-  | { messages: Messages }
-  | { default: { messages: Messages } }
-  | { default: Messages };
 
 /**
  * Runtime type guard to safely extract `messages` from a dynamic import.

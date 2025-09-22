@@ -54,6 +54,11 @@ jobs:
       - name: Extract app catalogs (web-react)
         run: pnpm -C apps/web-react lingui:extract
 
+      - name: Verify i18n catalogs are up to date
+        working-directory: apps/web-react
+        run: |
+          git diff --exit-code src/locales || (echo "Catalogs changed – commit them" && exit 1)
+
       - name: Compile app catalogs (web-react)
         run: pnpm -C apps/web-react lingui:compile
 

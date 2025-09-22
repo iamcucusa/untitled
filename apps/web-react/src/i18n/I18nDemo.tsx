@@ -37,7 +37,7 @@ export function I18nDemo(): JSX.Element {
           setReady(true);
           setLoading(false);
         }
-      } catch (error) {
+      } catch {
         if (isMounted) {
           setLoading(false);
         }

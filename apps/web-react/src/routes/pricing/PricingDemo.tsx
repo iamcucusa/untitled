@@ -1,4 +1,3 @@
-import { t } from '@lingui/core/macro';
 import { useI18n } from '@untitled-ds/i18n-react';
 
 /**
